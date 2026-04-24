@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- ═══════════════════════════════════════
-       ESSENTIAL META
-  ═══════════════════════════════════════ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- ═══════════════════════════════════════
-       SEO — PRIMARY
-  ═══════════════════════════════════════ -->
+  <!-- SEO — PRIMARY -->
   <title>WiShare — Instant WiFi File & Text Sharing | No Internet Required</title>
   <meta name="description" content="WiShare lets you share files and text instantly across all devices on the same WiFi network. No internet, no account, no app install needed. Just open and share." />
   <meta name="keywords" content="wifi file sharing, local network sharing, share files without internet, text sync wifi, lan file transfer, wishare, local file share, wifi sharing tool" />
@@ -20,522 +15,361 @@
   <meta name="theme-color" content="#3d68e8" media="(prefers-color-scheme: light)" />
   <meta name="color-scheme" content="dark light" />
 
-  <!-- ═══════════════════════════════════════
-       SEO — OPEN GRAPH
-  ═══════════════════════════════════════ -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:site_name"   content="WiShare" />
-  <meta property="og:title"       content="WiShare — Instant WiFi File & Text Sharing" />
-  <meta property="og:description" content="Share files and text across every device on your WiFi network — instantly, with no internet or account required." />
-  <meta property="og:url"         content="https://wishare.vercel.app" />
-  <meta property="og:image"       content="https://wishare.vercel.app/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height"content="630" />
-  <meta property="og:locale"      content="en_US" />
+  <!-- SEO — OPEN GRAPH -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="WiShare" />
+  <meta property="og:title"        content="WiShare — Instant WiFi File & Text Sharing" />
+  <meta property="og:description"  content="Share files and text across every device on your WiFi — instantly, with no internet or account required." />
+  <meta property="og:url"          content="https://wishare.vercel.app" />
+  <meta property="og:image"        content="https://wishare.vercel.app/og-image.png" />
+  <meta property="og:locale"       content="en_US" />
 
-  <!-- ═══════════════════════════════════════
-       SEO — TWITTER CARD
-  ═══════════════════════════════════════ -->
+  <!-- SEO — TWITTER -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="WiShare — Instant WiFi File & Text Sharing" />
   <meta name="twitter:description" content="Share files and text across every device on your WiFi — no internet, no account, no install." />
   <meta name="twitter:image"       content="https://wishare.vercel.app/og-image.png" />
 
-  <!-- ═══════════════════════════════════════
-       SEO — STRUCTURED DATA
-  ═══════════════════════════════════════ -->
+  <!-- SEO — STRUCTURED DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "WiShare",
-    "description": "WiShare lets you share files and text instantly across all devices on the same WiFi network. No internet, no account, no app required.",
+    "description": "Share files and text instantly across all devices. No internet, no account, no app required.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": [
-      "Real-time text synchronisation via Server-Sent Events",
-      "Drag and drop file upload",
-      "Collapsible file downloads panel",
-      "Dark and light mode toggle",
-      "Auto file cleanup after 7 days",
-      "No internet connection required",
-      "No account or login needed",
-      "Works on Vercel, Render, Railway and any Node.js host"
-    ]
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
 
   <link rel="canonical" href="https://wishare.vercel.app" />
 
-  <!-- ═══════════════════════════════════════
-       FONTS
-  ═══════════════════════════════════════ -->
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
 
   <style>
-    /* ═══════════════════════════════════════
-       DESIGN TOKENS
-    ═══════════════════════════════════════ */
-    :root {
-      --tr: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-      --radius-sm: 8px;
-      --radius:    12px;
-      --radius-lg: 16px;
-    }
+    :root { --tr: 0.22s cubic-bezier(0.4,0,0.2,1); --radius-sm:8px; --radius:12px; --radius-lg:16px; }
 
     [data-theme="dark"] {
-      --bg:       #0b0d12;
-      --surface:  #14161d;
-      --surf2:    #1a1d27;
-      --surf3:    #21263a;
-      --bd:       #272c3f;
-      --bd2:      #343b54;
-      --txt:      #eef0f8;
-      --txt2:     #8c93ae;
-      --txt3:     #484f68;
-      --acc:      #5b8af5;
-      --acc2:     #8b5cf6;
-      --accG:     linear-gradient(135deg, #5b8af5, #8b5cf6);
-      --accGlow:  0 0 28px rgba(91,138,245,0.22);
-      --accDim:   rgba(91,138,245,0.08);
-      --ok:       #34d399;
-      --err:      #f87171;
-      --warn:     #fbbf24;
-      --shadow:   0 4px 32px rgba(0,0,0,0.45);
+      --bg:#0b0d12; --surface:#14161d; --surf2:#1a1d27; --surf3:#21263a;
+      --bd:#272c3f; --bd2:#343b54; --txt:#eef0f8; --txt2:#8c93ae; --txt3:#484f68;
+      --acc:#5b8af5; --acc2:#8b5cf6;
+      --accG:linear-gradient(135deg,#5b8af5,#8b5cf6);
+      --accGlow:0 0 28px rgba(91,138,245,.22); --accDim:rgba(91,138,245,.08);
+      --ok:#34d399; --err:#f87171; --shadow:0 4px 32px rgba(0,0,0,.45);
     }
     [data-theme="light"] {
-      --bg:       #eef2ff;
-      --surface:  #ffffff;
-      --surf2:    #f4f6ff;
-      --surf3:    #e8edff;
-      --bd:       #d1d9f5;
-      --bd2:      #b8c3ea;
-      --txt:      #1a1e2e;
-      --txt2:     #4a5270;
-      --txt3:     #9aa0b8;
-      --acc:      #3d68e8;
-      --acc2:     #7c3aed;
-      --accG:     linear-gradient(135deg, #3d68e8, #7c3aed);
-      --accGlow:  0 0 28px rgba(61,104,232,0.2);
-      --accDim:   rgba(61,104,232,0.07);
-      --ok:       #059669;
-      --err:      #dc2626;
-      --warn:     #d97706;
-      --shadow:   0 4px 24px rgba(61,104,232,0.1);
+      --bg:#eef2ff; --surface:#fff; --surf2:#f4f6ff; --surf3:#e8edff;
+      --bd:#d1d9f5; --bd2:#b8c3ea; --txt:#1a1e2e; --txt2:#4a5270; --txt3:#9aa0b8;
+      --acc:#3d68e8; --acc2:#7c3aed;
+      --accG:linear-gradient(135deg,#3d68e8,#7c3aed);
+      --accGlow:0 0 28px rgba(61,104,232,.2); --accDim:rgba(61,104,232,.07);
+      --ok:#059669; --err:#dc2626; --shadow:0 4px 24px rgba(61,104,232,.1);
     }
 
-    /* ═══════════════════════════════════════
-       RESET & BASE
-    ═══════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--txt);
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      transition: background var(--tr), color var(--tr);
-      line-height: 1.6;
-      overflow-x: hidden;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+    body{
+      font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--txt);
+      min-height:100vh; min-height:100dvh; display:flex; flex-direction:column;
+      transition:background var(--tr),color var(--tr); line-height:1.6; overflow-x:hidden;
     }
+    button{cursor:pointer;font-family:inherit;} a{color:var(--acc);}
 
-    button { cursor: pointer; font-family: inherit; }
-    a { color: var(--acc); }
-
-    /* ═══════════════════════════════════════
-       HEADER
-    ═══════════════════════════════════════ */
-    header {
-      position: sticky;
-      top: 0; z-index: 200;
-      background: var(--surface);
-      border-bottom: 1px solid var(--bd);
-      height: 62px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 max(24px, env(safe-area-inset-left))
-               0 max(24px, env(safe-area-inset-right));
-      padding-left:  max(24px, env(safe-area-inset-left));
-      padding-right: max(24px, env(safe-area-inset-right));
-      box-shadow: var(--shadow);
-      transition: background var(--tr), border-color var(--tr);
+    /* ── HEADER ── */
+    header{
+      position:sticky; top:0; z-index:200;
+      background:var(--surface); border-bottom:1px solid var(--bd);
+      height:62px; display:flex; align-items:center; justify-content:space-between;
+      padding-left:max(24px,env(safe-area-inset-left));
+      padding-right:max(24px,env(safe-area-inset-right));
+      box-shadow:var(--shadow); transition:background var(--tr),border-color var(--tr);
     }
-
-    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
-    .logo-mark {
-      width:36px; height:36px; background:var(--accG); border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px; box-shadow:var(--accGlow); flex-shrink:0;
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-mark{
+      width:36px;height:36px;background:var(--accG);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;box-shadow:var(--accGlow);flex-shrink:0;
     }
-    .logo-name {
-      font-family:'Syne',sans-serif; font-weight:800; font-size:1.25rem;
-      background:var(--accG); -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-0.04em;
+    .logo-name{
+      font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
+      background:var(--accG);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;letter-spacing:-0.04em;
     }
-    .logo-pill {
-      font-size:0.58rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
-      background:var(--surf3); color:var(--txt3); border:1px solid var(--bd);
-      border-radius:4px; padding:2px 6px; align-self:flex-end; margin-bottom:2px;
-      transition:background var(--tr), border-color var(--tr);
+    .logo-pill{
+      font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      background:var(--surf3);color:var(--txt3);border:1px solid var(--bd);
+      border-radius:4px;padding:2px 6px;align-self:flex-end;margin-bottom:2px;
+      transition:background var(--tr),border-color var(--tr);
     }
+    .hdr-right{display:flex;align-items:center;gap:8px;}
 
-    .hdr-right { display:flex; align-items:center; gap:8px; }
-
-    /* Live status pill */
-    .live-pill {
-      display:flex; align-items:center; gap:6px;
-      background:var(--surf2); border:1px solid var(--bd);
-      border-radius:20px; padding:5px 10px 5px 8px;
-      font-size:0.72rem; font-weight:500; color:var(--txt2); white-space:nowrap;
+    /* Live pill */
+    .live-pill{
+      display:flex;align-items:center;gap:6px;background:var(--surf2);
+      border:1px solid var(--bd);border-radius:20px;padding:5px 10px 5px 8px;
+      font-size:.72rem;font-weight:500;color:var(--txt2);white-space:nowrap;
       transition:all var(--tr);
     }
-    .live-dot {
-      width:7px; height:7px; border-radius:50%; background:var(--txt3);
-      flex-shrink:0; transition:background 0.4s, box-shadow 0.4s;
+    .live-dot{
+      width:7px;height:7px;border-radius:50%;background:var(--txt3);
+      flex-shrink:0;transition:background .4s,box-shadow .4s;
     }
-    .live-dot.on  { background:var(--ok);   box-shadow:0 0 7px var(--ok);  animation:dpOk   2.2s ease infinite; }
-    .live-dot.err { background:var(--err);  box-shadow:0 0 7px var(--err); animation:dpErr  1.4s ease infinite; }
-    .live-dot.warn{ background:var(--warn); box-shadow:0 0 7px var(--warn);}
-    @keyframes dpOk  { 0%,100%{box-shadow:0 0 5px var(--ok)}  50%{box-shadow:0 0 13px var(--ok)} }
-    @keyframes dpErr { 0%,100%{box-shadow:0 0 5px var(--err)} 50%{box-shadow:0 0 12px var(--err)} }
+    .live-dot.on  {background:var(--ok); box-shadow:0 0 7px var(--ok); animation:dpOn  2.2s ease infinite;}
+    .live-dot.err {background:var(--err);box-shadow:0 0 7px var(--err);animation:dpErr 1.4s ease infinite;}
+    @keyframes dpOn  {0%,100%{box-shadow:0 0 5px var(--ok)} 50%{box-shadow:0 0 13px var(--ok)}}
+    @keyframes dpErr {0%,100%{box-shadow:0 0 5px var(--err)}50%{box-shadow:0 0 12px var(--err)}}
 
     /* Icon buttons */
-    .ibtn {
-      width:38px; height:38px; min-width:44px; min-height:44px;
-      border-radius:var(--radius-sm); background:var(--surf2); border:1px solid var(--bd);
-      color:var(--txt2); display:flex; align-items:center; justify-content:center;
-      font-size:16px; transition:all var(--tr); flex-shrink:0;
+    .ibtn{
+      width:38px;height:38px;min-width:44px;min-height:44px;
+      border-radius:var(--radius-sm);background:var(--surf2);border:1px solid var(--bd);
+      color:var(--txt2);display:flex;align-items:center;justify-content:center;
+      font-size:16px;transition:all var(--tr);flex-shrink:0;
     }
-    .ibtn:hover  { background:var(--surf3); border-color:var(--bd2); color:var(--txt); transform:scale(1.05); }
-    .ibtn:active { transform:scale(0.92); }
-    .ibtn.spin   { animation:spinAnim 0.65s linear; }
-    @keyframes spinAnim { to { transform:rotate(360deg); } }
+    .ibtn:hover {background:var(--surf3);border-color:var(--bd2);color:var(--txt);transform:scale(1.05);}
+    .ibtn:active{transform:scale(.92);}
+    .ibtn.spin  {animation:spinAnim .65s linear;}
+    @keyframes spinAnim{to{transform:rotate(360deg)}}
 
     /* Theme toggle */
-    .tgl-label { display:flex; align-items:center; gap:6px; cursor:pointer; min-height:44px; padding:4px; }
-    .tgl { position:relative; display:inline-block; width:48px; height:26px; flex-shrink:0; }
-    .tgl input { opacity:0; width:0; height:0; position:absolute; }
-    .tgl-track { position:absolute; inset:0; background:var(--surf3); border:1px solid var(--bd2); border-radius:13px; transition:all var(--tr); }
-    .tgl-thumb {
-      position:absolute; top:3px; left:3px; width:18px; height:18px;
-      background:var(--accG); border-radius:50%;
-      display:flex; align-items:center; justify-content:center; font-size:10px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.3); transition:transform var(--tr);
+    .tgl-label{display:flex;align-items:center;gap:6px;cursor:pointer;min-height:44px;padding:4px;}
+    .tgl{position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0;}
+    .tgl input{opacity:0;width:0;height:0;position:absolute;}
+    .tgl-track{position:absolute;inset:0;background:var(--surf3);border:1px solid var(--bd2);border-radius:13px;transition:all var(--tr);}
+    .tgl-thumb{
+      position:absolute;top:3px;left:3px;width:18px;height:18px;
+      background:var(--accG);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:10px;
+      box-shadow:0 2px 6px rgba(0,0,0,.3);transition:transform var(--tr);
     }
-    .tgl input:checked ~ .tgl-track .tgl-thumb { transform:translateX(22px); }
+    .tgl input:checked~.tgl-track .tgl-thumb{transform:translateX(22px);}
 
-    /* ═══════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════ */
-    .hero {
-      background:var(--surface); border-bottom:1px solid var(--bd);
-      padding:28px 24px 24px; text-align:center;
-      transition:background var(--tr), border-color var(--tr);
+    /* ── HERO ── */
+    .hero{
+      background:var(--surface);border-bottom:1px solid var(--bd);
+      padding:28px 24px 24px;text-align:center;
+      transition:background var(--tr),border-color var(--tr);
     }
-    .hero h1 {
-      font-family:'Syne',sans-serif; font-weight:800;
-      font-size:clamp(1.35rem, 4vw, 2rem); letter-spacing:-0.04em;
-      margin-bottom:8px; color:var(--txt); line-height:1.2;
+    .hero h1{
+      font-family:'Syne',sans-serif;font-weight:800;
+      font-size:clamp(1.35rem,4vw,2rem);letter-spacing:-0.04em;
+      margin-bottom:8px;color:var(--txt);line-height:1.2;
     }
-    .hero h1 em {
-      font-style:normal; background:var(--accG);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    .hero h1 em{
+      font-style:normal;background:var(--accG);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
     }
-    .hero p { color:var(--txt2); font-size:clamp(0.83rem, 2vw, 0.93rem); max-width:440px; margin:0 auto; line-height:1.65; }
+    .hero p{color:var(--txt2);font-size:clamp(.83rem,2vw,.93rem);max-width:440px;margin:0 auto;line-height:1.65;}
+    .hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+    .chip{
+      display:inline-flex;align-items:center;gap:5px;background:var(--surf2);
+      border:1px solid var(--bd);border-radius:20px;padding:4px 12px;
+      font-size:.72rem;color:var(--txt2);font-weight:500;white-space:nowrap;transition:all var(--tr);
+    }
+    .chip:hover{border-color:var(--acc);color:var(--acc);}
 
-    .hero-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:14px; }
-    .chip {
-      display:inline-flex; align-items:center; gap:5px;
-      background:var(--surf2); border:1px solid var(--bd);
-      border-radius:20px; padding:4px 12px;
-      font-size:0.72rem; color:var(--txt2); font-weight:500; white-space:nowrap;
-      transition:all var(--tr);
-    }
-    .chip:hover { border-color:var(--acc); color:var(--acc); }
-
-    /* ═══════════════════════════════════════
-       MAIN
-    ═══════════════════════════════════════ */
-    main {
-      flex:1; max-width:860px; width:100%;
-      margin:0 auto; padding:24px 18px 52px;
-      display:flex; flex-direction:column; gap:18px;
+    /* ── MAIN ── */
+    main{
+      flex:1;max-width:860px;width:100%;margin:0 auto;
+      padding:24px 18px 52px;display:flex;flex-direction:column;gap:18px;
     }
 
-    /* ═══════════════════════════════════════
-       CARDS
-    ═══════════════════════════════════════ */
-    .card {
-      background:var(--surface); border:1px solid var(--bd);
-      border-radius:var(--radius-lg); overflow:hidden;
-      box-shadow:var(--shadow);
-      transition:background var(--tr), border-color var(--tr);
-      animation:cardUp 0.38s ease both;
+    /* ── CARDS ── */
+    .card{
+      background:var(--surface);border:1px solid var(--bd);
+      border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);
+      transition:background var(--tr),border-color var(--tr);
+      animation:cardUp .38s ease both;
     }
-    .card:nth-child(1){animation-delay:.04s}
-    .card:nth-child(2){animation-delay:.10s}
-    .card:nth-child(3){animation-delay:.16s}
-    .card:nth-child(4){animation-delay:.22s}
-    @keyframes cardUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.10s}
+    .card:nth-child(3){animation-delay:.16s}.card:nth-child(4){animation-delay:.22s}
+    @keyframes cardUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-    .card-hdr {
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:8px; padding:14px 18px;
-      border-bottom:1px solid var(--bd); transition:border-color var(--tr);
+    .card-hdr{
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:8px;padding:14px 18px;
+      border-bottom:1px solid var(--bd);transition:border-color var(--tr);
     }
-    .card-title {
-      display:flex; align-items:center; gap:9px;
-      font-family:'Syne',sans-serif; font-weight:700; font-size:0.92rem; color:var(--txt);
+    .card-title{
+      display:flex;align-items:center;gap:9px;
+      font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--txt);
     }
-    .badge { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
-    .b-blue   { background:rgba(91,138,245,0.12);  color:#5b8af5; }
-    .b-purple { background:rgba(139,92,246,0.12);  color:#8b5cf6; }
-    .b-teal   { background:rgba(52,211,153,0.12);  color:#34d399; }
-    .card-acts { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+    .badge{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+    .b-blue  {background:rgba(91,138,245,.12);color:#5b8af5;}
+    .b-purple{background:rgba(139,92,246,.12);color:#8b5cf6;}
+    .b-teal  {background:rgba(52,211,153,.12);color:#34d399;}
+    .card-acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
 
-    /* ═══════════════════════════════════════
-       BUTTONS
-    ═══════════════════════════════════════ */
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:5px;
-      padding:7px 14px; border-radius:var(--radius-sm);
-      font-size:0.8rem; font-weight:500; cursor:pointer;
-      transition:all var(--tr); border:1px solid transparent;
-      font-family:'DM Sans',sans-serif; white-space:nowrap; text-decoration:none; min-height:36px;
+    /* ── BUTTONS ── */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:5px;
+      padding:7px 14px;border-radius:var(--radius-sm);
+      font-size:.8rem;font-weight:500;cursor:pointer;
+      transition:all var(--tr);border:1px solid transparent;
+      font-family:'DM Sans',sans-serif;white-space:nowrap;text-decoration:none;min-height:36px;
     }
-    .btn:active  { transform:scale(0.96); }
-    .btn:disabled { opacity:0.4; cursor:not-allowed; }
-    .btn-ghost  { background:var(--surf2); border-color:var(--bd); color:var(--txt2); }
-    .btn-ghost:hover { background:var(--surf3); border-color:var(--bd2); color:var(--txt); }
-    .btn-danger { background:transparent; border-color:rgba(248,113,113,0.25); color:var(--err); }
-    .btn-danger:hover { background:rgba(248,113,113,0.1); border-color:var(--err); }
-    .btn-sm { padding:5px 10px; font-size:0.74rem; border-radius:6px; min-height:32px; }
+    .btn:active{transform:scale(.96);}.btn:disabled{opacity:.4;cursor:not-allowed;}
+    .btn-ghost {background:var(--surf2);border-color:var(--bd);color:var(--txt2);}
+    .btn-ghost:hover{background:var(--surf3);border-color:var(--bd2);color:var(--txt);}
+    .btn-danger{background:transparent;border-color:rgba(248,113,113,.25);color:var(--err);}
+    .btn-danger:hover{background:rgba(248,113,113,.1);border-color:var(--err);}
+    .btn-sm{padding:5px 10px;font-size:.74rem;border-radius:6px;min-height:32px;}
 
-    /* ═══════════════════════════════════════
-       TEXTAREA
-    ═══════════════════════════════════════ */
-    #shared-text {
-      width:100%; min-height:160px;
-      background:var(--surf2); color:var(--txt); border:none; resize:vertical;
-      font-family:'Menlo','Consolas','Courier New',monospace;
-      /* ≥16px prevents iOS auto-zoom on focus */
-      font-size:max(16px, 0.875rem);
-      line-height:1.75; padding:16px 18px; outline:none; display:block;
-      transition:background var(--tr), color var(--tr);
+    /* ── TEXTAREA ── */
+    #shared-text{
+      width:100%;min-height:160px;background:var(--surf2);color:var(--txt);
+      border:none;resize:vertical;font-family:'Menlo','Consolas','Courier New',monospace;
+      font-size:max(16px,.875rem);line-height:1.75;padding:16px 18px;outline:none;display:block;
+      transition:background var(--tr),color var(--tr);
     }
-    #shared-text::placeholder { color:var(--txt3); }
-    #shared-text:focus { background:var(--surf3); }
+    #shared-text::placeholder{color:var(--txt3);}
+    #shared-text:focus{background:var(--surf3);}
+    .text-foot{
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:6px;padding:8px 18px;
+      border-top:1px solid var(--bd);background:var(--surface);
+      transition:background var(--tr),border-color var(--tr);
+    }
+    .char-ct{font-size:.7rem;color:var(--txt3);font-variant-numeric:tabular-nums;}
+    .sync-tag{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;color:var(--ok);font-weight:500;opacity:0;transition:opacity .3s;}
+    .sync-tag.on{opacity:1;}
+    .sync-dot{width:5px;height:5px;border-radius:50%;background:var(--ok);animation:bk 1s infinite;}
+    @keyframes bk{0%,100%{opacity:1}50%{opacity:.2}}
 
-    .text-foot {
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:6px; padding:8px 18px;
-      border-top:1px solid var(--bd); background:var(--surface);
-      transition:background var(--tr), border-color var(--tr);
+    /* ── UPLOAD ZONE ── */
+    .upzone{
+      margin:16px 18px;border:2px dashed var(--bd2);border-radius:var(--radius);
+      padding:36px 20px;display:flex;flex-direction:column;align-items:center;
+      gap:10px;cursor:pointer;position:relative;transition:all var(--tr);text-align:center;
     }
-    .char-ct { font-size:0.7rem; color:var(--txt3); font-variant-numeric:tabular-nums; }
-    .sync-tag { display:inline-flex; align-items:center; gap:5px; font-size:0.68rem; color:var(--ok); font-weight:500; opacity:0; transition:opacity 0.3s; }
-    .sync-tag.on { opacity:1; }
-    .sync-dot { width:5px; height:5px; border-radius:50%; background:var(--ok); animation:bk 1s infinite; }
-    @keyframes bk { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .upzone:hover,.upzone.drag{border-color:var(--acc);background:var(--accDim);}
+    .upzone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;touch-action:manipulation;}
+    .up-icon{
+      width:52px;height:52px;border-radius:13px;background:var(--accDim);
+      display:flex;align-items:center;justify-content:center;font-size:26px;
+      transition:transform var(--tr),background var(--tr);pointer-events:none;
+    }
+    .upzone:hover .up-icon,.upzone.drag .up-icon{transform:translateY(-4px);background:rgba(91,138,245,.14);}
+    .up-lbl{font-weight:600;font-size:.9rem;color:var(--txt);pointer-events:none;}
+    .up-sub{font-size:.74rem;color:var(--txt3);pointer-events:none;}
+    .prog-wrap   {padding:0 18px 14px;display:none;}
+    .prog-wrap.on{display:block;}
+    .prog-info   {display:flex;justify-content:space-between;font-size:.73rem;color:var(--txt2);margin-bottom:6px;}
+    .prog-track  {height:5px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+    .prog-bar    {height:100%;background:var(--accG);border-radius:99px;transition:width .2s;width:0;}
 
-    /* ═══════════════════════════════════════
-       UPLOAD ZONE
-    ═══════════════════════════════════════ */
-    .upzone {
-      margin:16px 18px; border:2px dashed var(--bd2); border-radius:var(--radius);
-      padding:36px 20px; display:flex; flex-direction:column; align-items:center;
-      gap:10px; cursor:pointer; position:relative; transition:all var(--tr); text-align:center;
+    /* ── DOWNLOADS PANEL ── */
+    .dl-hdr{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 18px;cursor:pointer;user-select:none;transition:background var(--tr);min-height:52px;
     }
-    .upzone:hover,.upzone.drag { border-color:var(--acc); background:var(--accDim); }
-    .upzone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; touch-action:manipulation; }
-    .up-icon {
-      width:52px; height:52px; border-radius:13px; background:var(--accDim);
-      display:flex; align-items:center; justify-content:center; font-size:26px;
-      transition:transform var(--tr),background var(--tr); pointer-events:none;
-    }
-    .upzone:hover .up-icon,.upzone.drag .up-icon { transform:translateY(-4px); background:rgba(91,138,245,0.14); }
-    .up-lbl { font-weight:600; font-size:0.9rem; color:var(--txt); pointer-events:none; }
-    .up-sub { font-size:0.74rem; color:var(--txt3); pointer-events:none; }
+    .dl-hdr:hover{background:var(--surf2);}
+    .dl-left {display:flex;align-items:center;gap:9px;}
+    .dl-right{display:flex;align-items:center;gap:8px;}
+    .cnt-badge{background:var(--accG);color:#fff;font-size:.65rem;font-weight:700;border-radius:99px;padding:2px 8px;min-width:22px;text-align:center;}
+    .chev{color:var(--txt3);font-size:17px;transition:transform var(--tr);}
+    .chev.open{transform:rotate(180deg);}
+    .dl-body {max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);}
+    .dl-body.open{max-height:4000px;}
+    .dl-inner{border-top:1px solid var(--bd);}
+    .f-empty{padding:28px 18px;text-align:center;color:var(--txt3);font-size:.83rem;}
+    .f-empty span{font-size:2rem;display:block;margin-bottom:8px;opacity:.5;}
 
-    .prog-wrap   { padding:0 18px 14px; display:none; }
-    .prog-wrap.on{ display:block; }
-    .prog-info   { display:flex; justify-content:space-between; font-size:0.73rem; color:var(--txt2); margin-bottom:6px; }
-    .prog-track  { height:5px; background:var(--surf3); border-radius:99px; overflow:hidden; }
-    .prog-bar    { height:100%; background:var(--accG); border-radius:99px; transition:width 0.2s; width:0; }
-
-    /* ═══════════════════════════════════════
-       DOWNLOADS PANEL
-    ═══════════════════════════════════════ */
-    .dl-hdr {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 18px; cursor:pointer; user-select:none; transition:background var(--tr); min-height:52px;
+    .f-item{
+      display:grid;grid-template-columns:40px 1fr auto;
+      align-items:center;gap:12px;padding:12px 18px;
+      border-bottom:1px solid var(--bd);transition:background var(--tr);animation:fi .25s ease both;
     }
-    .dl-hdr:hover { background:var(--surf2); }
-    .dl-left  { display:flex; align-items:center; gap:9px; }
-    .dl-right { display:flex; align-items:center; gap:8px; }
-    .cnt-badge { background:var(--accG); color:#fff; font-size:0.65rem; font-weight:700; border-radius:99px; padding:2px 8px; min-width:22px; text-align:center; }
-    .chev { color:var(--txt3); font-size:17px; transition:transform var(--tr); }
-    .chev.open { transform:rotate(180deg); }
-    .dl-body  { max-height:0; overflow:hidden; transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1); }
-    .dl-body.open { max-height:4000px; }
-    .dl-inner { border-top:1px solid var(--bd); }
-    .f-empty  { padding:28px 18px; text-align:center; color:var(--txt3); font-size:0.83rem; }
-    .f-empty span { font-size:2rem; display:block; margin-bottom:8px; opacity:0.5; }
+    @keyframes fi{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+    .f-item:last-child{border-bottom:none;}
+    .f-item:hover{background:var(--surf2);}
+    .f-icon{width:40px;height:40px;border-radius:9px;background:var(--surf3);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+    .f-info{min-width:0;}
+    .f-name{font-weight:500;font-size:.85rem;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .f-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:3px;}
+    .f-meta span{font-size:.68rem;color:var(--txt3);}
+    .f-acts{display:flex;gap:6px;flex-shrink:0;align-items:center;}
 
-    .f-item {
-      display:grid; grid-template-columns:40px 1fr auto;
-      align-items:center; gap:12px; padding:12px 18px;
-      border-bottom:1px solid var(--bd); transition:background var(--tr); animation:fi 0.25s ease both;
-    }
-    @keyframes fi { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
-    .f-item:last-child { border-bottom:none; }
-    .f-item:hover { background:var(--surf2); }
-    .f-icon { width:40px; height:40px; border-radius:9px; background:var(--surf3); display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0; }
-    .f-info { min-width:0; }
-    .f-name { font-weight:500; font-size:0.85rem; color:var(--txt); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .f-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:3px; }
-    .f-meta span { font-size:0.68rem; color:var(--txt3); }
-    .f-acts { display:flex; gap:6px; flex-shrink:0; align-items:center; }
+    /* ── NETWORK CARD ── */
+    .net-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:16px 18px;}
+    .ip-chip {background:var(--surf2);border:1px solid var(--bd);border-radius:var(--radius);padding:14px 15px;cursor:pointer;transition:all var(--tr);}
+    .ip-chip:hover{border-color:var(--acc);box-shadow:var(--accGlow);}
+    .ip-lbl {font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:5px;}
+    .ip-url {font-family:'Menlo','Consolas',monospace;font-size:.78rem;color:var(--acc);font-weight:500;word-break:break-all;}
+    .ip-hint{font-size:.65rem;color:var(--txt3);margin-top:4px;}
 
-    /* ═══════════════════════════════════════
-       NETWORK CARD
-    ═══════════════════════════════════════ */
-    .net-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; padding:16px 18px; }
-    .ip-chip  { background:var(--surf2); border:1px solid var(--bd); border-radius:var(--radius); padding:14px 15px; cursor:pointer; transition:all var(--tr); }
-    .ip-chip:hover { border-color:var(--acc); box-shadow:var(--accGlow); }
-    .ip-lbl  { font-size:0.64rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--txt3); margin-bottom:5px; }
-    .ip-url  { font-family:'Menlo','Consolas',monospace; font-size:0.78rem; color:var(--acc); font-weight:500; word-break:break-all; }
-    .ip-hint { font-size:0.65rem; color:var(--txt3); margin-top:4px; }
+    /* ── TOAST ── */
+    #toasts{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));right:16px;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);}
+    .toast{
+      display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--bd2);
+      border-radius:var(--radius);padding:11px 16px;font-size:.81rem;font-weight:500;color:var(--txt);
+      box-shadow:0 8px 32px rgba(0,0,0,.22);animation:tIn .28s cubic-bezier(.34,1.56,.64,1);
+      pointer-events:all;max-width:300px;transition:opacity .3s;
+    }
+    .toast.success{border-color:rgba(52,211,153,.35);}
+    .toast.error  {border-color:rgba(248,113,113,.35);color:var(--err);}
+    @keyframes tIn{from{opacity:0;transform:translateX(16px) scale(.94)}to{opacity:1;transform:none}}
 
-    /* ═══════════════════════════════════════
-       TOAST
-    ═══════════════════════════════════════ */
-    #toasts { position:fixed; bottom:max(22px, env(safe-area-inset-bottom)); right:16px; z-index:999; display:flex; flex-direction:column; gap:8px; pointer-events:none; max-width:calc(100vw - 32px); }
-    .toast { display:flex; align-items:center; gap:10px; background:var(--surf2); border:1px solid var(--bd2); border-radius:var(--radius); padding:11px 16px; font-size:0.81rem; font-weight:500; color:var(--txt); box-shadow:0 8px 32px rgba(0,0,0,0.22); animation:tIn 0.28s cubic-bezier(0.34,1.56,0.64,1); pointer-events:all; max-width:300px; transition:opacity 0.3s; }
-    .toast.success{ border-color:rgba(52,211,153,0.35); }
-    .toast.error  { border-color:rgba(248,113,113,0.35); color:var(--err); }
-    @keyframes tIn { from{opacity:0;transform:translateX(16px) scale(0.94)} to{opacity:1;transform:none} }
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--bd);padding:24px 20px;padding-bottom:max(24px,env(safe-area-inset-bottom));transition:background var(--tr),border-color var(--tr);}
+    .foot-in{max-width:860px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;}
+    .foot-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;background:var(--accG);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .foot-line{width:36px;height:1px;background:var(--bd);}
+    .foot-copy{font-size:.74rem;color:var(--txt3);line-height:1.75;}
 
-    /* ═══════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════ */
-    footer { background:var(--surface); border-top:1px solid var(--bd); padding:24px 20px; padding-bottom:max(24px, env(safe-area-inset-bottom)); transition:background var(--tr), border-color var(--tr); }
-    .foot-in { max-width:860px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:7px; text-align:center; }
-    .foot-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; background:var(--accG); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .foot-line { width:36px; height:1px; background:var(--bd); }
-    .foot-copy { font-size:0.74rem; color:var(--txt3); line-height:1.75; }
-    .foot-copy a { color:var(--acc); text-decoration:none; font-weight:500; }
-    .foot-copy a:hover { text-decoration:underline; }
-
-    /* ═══════════════════════════════════════
-       RESPONSIVE — 7 BREAKPOINTS
-    ═══════════════════════════════════════ */
-    @media(min-width:1200px){
-      main{padding:30px 24px 60px;} .hero{padding:36px 24px 30px;}
-      .card-hdr{padding:16px 24px;} #shared-text{padding:20px 24px;min-height:200px;}
-      .upzone{padding:44px 24px;margin:18px 24px;} .f-item{padding:14px 24px;}
-    }
-    @media(min-width:768px) and (max-width:1023px){
-      header{height:58px;} main{padding:20px 16px 44px;gap:16px;}
-      .hero{padding:22px 20px 18px;} .upzone{padding:30px 18px;margin:14px 16px;}
-    }
-    @media(min-width:600px) and (max-width:767px){
-      header{padding:0 16px;height:56px;} .logo-pill{display:none;}
-      main{padding:16px 14px 40px;gap:14px;} .hero{padding:20px 18px 16px;}
-      .hero h1{font-size:1.6rem;} .card-hdr{padding:12px 16px;}
-      #shared-text{padding:14px 16px;min-height:150px;}
-      .upzone{padding:28px 16px;margin:12px 14px;} .f-item{padding:11px 16px;}
-      .net-grid{grid-template-columns:1fr 1fr;padding:14px 16px;}
-    }
-    @media(min-width:480px) and (max-width:599px){
-      header{padding:0 14px;height:54px;} .logo-name{font-size:1.1rem;} .logo-pill{display:none;}
-      .live-pill span{display:none;} main{padding:14px 12px 36px;gap:13px;}
-      .hero{padding:18px 16px 14px;} .hero h1{font-size:1.45rem;}
-      .card-hdr{padding:11px 14px;gap:6px;} #shared-text{padding:13px 14px;min-height:140px;}
-      .text-foot{padding:7px 14px;} .upzone{padding:24px 14px;margin:12px;}
-      .up-icon{width:44px;height:44px;font-size:22px;} .f-item{padding:10px 14px;gap:10px;grid-template-columns:36px 1fr auto;}
-      .f-icon{width:36px;height:36px;font-size:17px;} .net-grid{grid-template-columns:1fr;padding:13px 14px;}
-    }
+    /* ── RESPONSIVE ── */
+    @media(min-width:1200px){main{padding:30px 24px 60px;}.hero{padding:36px 24px 30px;}.card-hdr{padding:16px 24px;}#shared-text{padding:20px 24px;min-height:200px;}.upzone{padding:44px 24px;margin:18px 24px;}.f-item{padding:14px 24px;}}
+    @media(min-width:768px) and (max-width:1023px){header{height:58px;}main{padding:20px 16px 44px;gap:16px;}.hero{padding:22px 20px 18px;}.upzone{padding:30px 18px;margin:14px 16px;}}
+    @media(min-width:600px) and (max-width:767px){header{padding:0 16px;height:56px;}.logo-pill{display:none;}main{padding:16px 14px 40px;gap:14px;}.hero{padding:20px 18px 16px;}.hero h1{font-size:1.6rem;}.card-hdr{padding:12px 16px;}#shared-text{padding:14px 16px;min-height:150px;}.upzone{padding:28px 16px;margin:12px 14px;}.f-item{padding:11px 16px;}.net-grid{grid-template-columns:1fr 1fr;padding:14px 16px;}}
+    @media(min-width:480px) and (max-width:599px){header{padding:0 14px;height:54px;}.logo-name{font-size:1.1rem;}.logo-pill{display:none;}.live-pill span{display:none;}main{padding:14px 12px 36px;gap:13px;}.hero{padding:18px 16px 14px;}.hero h1{font-size:1.45rem;}.card-hdr{padding:11px 14px;}#shared-text{padding:13px 14px;min-height:140px;}.text-foot{padding:7px 14px;}.upzone{padding:24px 14px;margin:12px;}.up-icon{width:44px;height:44px;font-size:22px;}.f-item{padding:10px 14px;gap:10px;grid-template-columns:36px 1fr auto;}.f-icon{width:36px;height:36px;font-size:17px;}.net-grid{grid-template-columns:1fr;padding:13px 14px;}}
     @media(max-width:479px){
-      header{padding:0 12px;height:52px;}
-      .logo-mark{width:32px;height:32px;font-size:16px;border-radius:8px;}
-      .logo-name{font-size:1.05rem;} .logo-pill{display:none;}
-      .live-pill{padding:4px 8px 4px 7px;gap:5px;} .live-pill span{display:none;}
-      .ibtn{min-width:38px;width:38px;height:38px;min-height:38px;} .hdr-right{gap:5px;}
-      main{padding:12px 10px 32px;gap:12px;}
-      .hero{padding:18px 14px 14px;} .hero h1{font-size:1.3rem;letter-spacing:-0.03em;}
-      .hero p{font-size:0.82rem;} .hero-chips{gap:5px;margin-top:10px;} .chip{font-size:0.66rem;padding:3px 9px;}
-      .card-hdr{padding:11px 13px;} .card-title{font-size:0.86rem;} .badge{width:26px;height:26px;font-size:12px;}
-      #shared-text{padding:12px 13px;min-height:130px;font-size:16px;}
-      .text-foot{padding:7px 13px;flex-direction:column;align-items:flex-start;gap:3px;}
-      .upzone{margin:11px;padding:22px 12px;gap:8px;} .up-icon{width:42px;height:42px;font-size:20px;border-radius:10px;}
-      .up-lbl{font-size:0.84rem;} .up-sub{font-size:0.68rem;} .prog-wrap{padding:0 13px 12px;}
-      .dl-hdr{padding:11px 13px;min-height:48px;}
-      .f-item{grid-template-columns:34px 1fr;grid-template-rows:auto auto;gap:8px 10px;padding:11px 13px;}
-      .f-icon{grid-row:1/3;align-self:start;margin-top:2px;width:34px;height:34px;font-size:16px;}
-      .f-info{grid-column:2;}
-      .f-acts{grid-column:1/-1;justify-content:flex-end;border-top:1px solid var(--bd);margin-top:4px;padding-top:8px;}
-      .net-grid{grid-template-columns:1fr;padding:12px 13px;gap:10px;}
-      footer{padding:18px 14px;padding-bottom:max(18px, env(safe-area-inset-bottom));}
-      .foot-copy{font-size:0.7rem;} .btn-sm{padding:5px 9px;font-size:0.72rem;}
-      #toasts{right:10px;} .toast{max-width:calc(100vw - 20px);}
+      header{padding:0 12px;height:52px;}.logo-mark{width:32px;height:32px;font-size:16px;border-radius:8px;}.logo-name{font-size:1.05rem;}.logo-pill{display:none;}.live-pill{padding:4px 8px 4px 7px;gap:5px;}.live-pill span{display:none;}.ibtn{min-width:38px;width:38px;height:38px;min-height:38px;}.hdr-right{gap:5px;}
+      main{padding:12px 10px 32px;gap:12px;}.hero{padding:18px 14px 14px;}.hero h1{font-size:1.3rem;letter-spacing:-0.03em;}.hero p{font-size:.82rem;}.hero-chips{gap:5px;margin-top:10px;}.chip{font-size:.66rem;padding:3px 9px;}
+      .card-hdr{padding:11px 13px;}.card-title{font-size:.86rem;}.badge{width:26px;height:26px;font-size:12px;}#shared-text{padding:12px 13px;min-height:130px;font-size:16px;}.text-foot{padding:7px 13px;flex-direction:column;align-items:flex-start;gap:3px;}
+      .upzone{margin:11px;padding:22px 12px;gap:8px;}.up-icon{width:42px;height:42px;font-size:20px;border-radius:10px;}.up-lbl{font-size:.84rem;}.up-sub{font-size:.68rem;}.prog-wrap{padding:0 13px 12px;}
+      .dl-hdr{padding:11px 13px;min-height:48px;}.f-item{grid-template-columns:34px 1fr;grid-template-rows:auto auto;gap:8px 10px;padding:11px 13px;}.f-icon{grid-row:1/3;align-self:start;margin-top:2px;width:34px;height:34px;font-size:16px;}.f-info{grid-column:2;}.f-acts{grid-column:1/-1;justify-content:flex-end;border-top:1px solid var(--bd);margin-top:4px;padding-top:8px;}
+      .net-grid{grid-template-columns:1fr;padding:12px 13px;gap:10px;}footer{padding:18px 14px;padding-bottom:max(18px,env(safe-area-inset-bottom));}.foot-copy{font-size:.7rem;}.btn-sm{padding:5px 9px;font-size:.72rem;}#toasts{right:10px;}.toast{max-width:calc(100vw - 20px);}
     }
-    @media(max-width:359px){
-      header{padding:0 10px;} .logo-name{font-size:0.95rem;}
-      main{padding:10px 8px 28px;} .hero h1{font-size:1.15rem;} .hero-chips{display:none;}
-      .card-hdr{padding:10px 11px;} #shared-text{padding:10px 11px;}
-      .upzone{margin:10px 9px;padding:18px 10px;} .f-item,.dl-hdr{padding:10px 11px;}
-    }
-    @media(max-height:500px) and (orientation:landscape){
-      header{height:48px;position:relative;} .hero{padding:10px 20px 8px;}
-      .hero h1{font-size:1.15rem;margin-bottom:3px;} .hero p,.hero-chips{display:none;}
-      main{padding:8px 14px 20px;gap:10px;} #shared-text{min-height:90px;} .upzone{padding:16px 14px;}
-    }
-    @media print{
-      header,footer,.hdr-right,.ibtn,.tgl-label{display:none;}
-      body{background:#fff;color:#000;} .card{border:1px solid #ccc;box-shadow:none;}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
-    }
+    @media(max-width:359px){header{padding:0 10px;}.logo-name{font-size:.95rem;}main{padding:10px 8px 28px;}.hero h1{font-size:1.15rem;}.hero-chips{display:none;}.card-hdr{padding:10px 11px;}#shared-text{padding:10px 11px;}.upzone{margin:10px 9px;padding:18px 10px;}.f-item,.dl-hdr{padding:10px 11px;}}
+    @media(max-height:500px) and (orientation:landscape){header{height:48px;position:relative;}.hero{padding:10px 20px 8px;}.hero h1{font-size:1.15rem;margin-bottom:3px;}.hero p,.hero-chips{display:none;}main{padding:8px 14px 20px;gap:10px;}#shared-text{min-height:90px;}.upzone{padding:16px 14px;}}
+    @media print{header,footer,.hdr-right,.ibtn,.tgl-label{display:none;}body{background:#fff;color:#000;}.card{border:1px solid #ccc;box-shadow:none;}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
   </style>
 </head>
 <body>
 
-<a href="#main-content" style="position:absolute;top:-99px;left:8px;z-index:9999;padding:6px 12px;background:var(--acc);color:#fff;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none;transition:top .2s" onfocus="this.style.top='8px'" onblur="this.style.top='-99px'">Skip to content</a>
+<a href="#main-content" style="position:absolute;top:-99px;left:8px;z-index:9999;padding:6px 12px;background:var(--acc);color:#fff;border-radius:6px;font-size:.8rem;font-weight:600;text-decoration:none;transition:top .2s" onfocus="this.style.top='8px'" onblur="this.style.top='-99px'">Skip to content</a>
 
 <!-- HEADER -->
 <header role="banner">
-  <a class="logo" href="/" aria-label="WiShare — Home">
+  <a class="logo" href="/" aria-label="WiShare home">
     <div class="logo-mark" aria-hidden="true">⇆</div>
     <span class="logo-name">WiShare</span>
     <span class="logo-pill" aria-hidden="true">Beta</span>
   </a>
   <div class="hdr-right" role="toolbar" aria-label="Page controls">
-    <div class="live-pill" aria-live="polite" aria-label="Connection status">
+    <div class="live-pill" aria-live="polite">
       <div class="live-dot" id="live-dot" aria-hidden="true"></div>
       <span id="live-lbl">Connecting…</span>
     </div>
-    <button class="ibtn" id="refresh-btn" aria-label="Refresh page" onclick="doRefresh()" title="Refresh">
+    <button class="ibtn" id="refresh-btn" onclick="doRefresh()" aria-label="Refresh page" title="Refresh">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
         <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
       </svg>
     </button>
-    <button class="ibtn" id="net-btn" aria-label="Show network info" onclick="toggleNet()" title="Network info">
+    <button class="ibtn" id="net-btn" onclick="toggleNet()" aria-label="Network info" title="Network info">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/>
         <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>
       </svg>
     </button>
     <label class="tgl-label" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
-      <span class="tgl-icon" id="tgl-icon" aria-hidden="true">🌙</span>
+      <span id="tgl-icon" aria-hidden="true">🌙</span>
       <div class="tgl">
         <input type="checkbox" id="theme-cb" onchange="setTheme(this.checked)" role="switch" aria-label="Light mode" />
         <div class="tgl-track"><div class="tgl-thumb" id="tgl-thumb" aria-hidden="true">🌙</div></div>
@@ -545,11 +379,11 @@
 </header>
 
 <!-- HERO -->
-<section class="hero" aria-label="Introduction" id="main-content">
+<section class="hero" id="main-content" aria-label="Introduction">
   <h1>Share files &amp; text across your <em>WiFi</em></h1>
   <p>Instant sync on every device on the same network — no internet, no account, no app install needed.</p>
   <div class="hero-chips" aria-label="Key features">
-    <span class="chip">⚡ Real-time sync</span>
+    <span class="chip">⚡ Syncs every 2.5s</span>
     <span class="chip">📡 WiFi &amp; online</span>
     <span class="chip">🔒 No login needed</span>
     <span class="chip">📱 Any device</span>
@@ -565,18 +399,18 @@
     <div class="card-hdr">
       <div class="card-title"><div class="badge b-blue" aria-hidden="true">✏️</div><h2 style="font:inherit">Shared Text</h2></div>
       <div class="card-acts">
-        <span class="sync-tag" id="sync-tag" aria-live="polite"><span class="sync-dot" aria-hidden="true"></span>Syncing</span>
+        <span class="sync-tag" id="sync-tag" aria-live="polite"><span class="sync-dot" aria-hidden="true"></span>Saving…</span>
         <button class="btn btn-ghost btn-sm" onclick="copyText()" aria-label="Copy text">Copy</button>
         <button class="btn btn-ghost btn-sm" onclick="clearText()" aria-label="Clear text">Clear</button>
       </div>
     </div>
     <textarea id="shared-text"
-      placeholder="Start typing… syncs instantly to every device viewing this page. Great for links, passwords, notes, and code snippets."
+      placeholder="Start typing… syncs to every device viewing this page within 2–3 seconds. Perfect for links, passwords, notes, and code snippets."
       aria-label="Shared text — syncs to all connected devices"
       spellcheck="true" autocomplete="off"></textarea>
     <div class="text-foot">
       <span class="char-ct" id="char-ct" aria-live="polite">0 characters</span>
-      <span style="font-size:0.68rem;color:var(--txt3)">⚡ SSE real-time sync</span>
+      <span style="font-size:.68rem;color:var(--txt3)">🔄 Polls every 2.5s</span>
     </div>
   </article>
 
@@ -584,7 +418,7 @@
   <article class="card" aria-label="File upload">
     <div class="card-hdr">
       <div class="card-title"><div class="badge b-purple" aria-hidden="true">📤</div><h2 style="font:inherit">Upload Files</h2></div>
-      <span style="font-size:0.7rem;color:var(--txt3)">Max 500 MB · Auto-deleted after 7 days</span>
+      <span style="font-size:.7rem;color:var(--txt3)">Max 500 MB · Auto-deleted after 7 days</span>
     </div>
     <div class="upzone" id="upzone" role="button" tabindex="0"
       aria-label="Drop files here or click to browse"
@@ -609,11 +443,11 @@
       onkeydown="if(event.key==='Enter'||event.key===' ')toggleDL()">
       <div class="dl-left">
         <div class="badge b-teal" aria-hidden="true">📥</div>
-        <h2 style="font:inherit;font-size:0.92rem;font-family:'Syne',sans-serif;font-weight:700">Downloads</h2>
+        <h2 style="font:inherit;font-size:.92rem;font-family:'Syne',sans-serif;font-weight:700">Downloads</h2>
         <span class="cnt-badge" id="f-cnt">0</span>
       </div>
       <div class="dl-right">
-        <button class="btn btn-danger btn-sm" id="clr-all-btn" style="display:none" onclick="clearAll(event)" aria-label="Delete all files">Clear All</button>
+        <button class="btn btn-danger btn-sm" id="clr-all-btn" style="display:none" onclick="clearAll(event)">Clear All</button>
         <span class="chev" id="chev" aria-hidden="true">▾</span>
       </div>
     </div>
@@ -631,8 +465,8 @@
       <button class="btn btn-ghost btn-sm" onclick="toggleNet()">Close</button>
     </div>
     <div class="net-grid" id="net-grid"><div style="padding:14px;color:var(--txt3);font-size:.82rem">Loading…</div></div>
-    <p style="padding:0 18px 14px;font-size:0.74rem;color:var(--txt3);line-height:1.65">
-      💡 Open any URL above on a device on the same WiFi. Click a chip to copy.
+    <p style="padding:0 18px 14px;font-size:.74rem;color:var(--txt3);line-height:1.65">
+      💡 Open any URL above on a device connected to the same WiFi. Click a chip to copy.
     </p>
   </article>
 
@@ -644,9 +478,9 @@
     <div class="foot-logo" aria-hidden="true">WiShare</div>
     <div class="foot-line" aria-hidden="true"></div>
     <div class="foot-copy">
-      <strong>WiShare</strong> — Seamless file &amp; text sharing across your local WiFi network.<br />
+      <strong>WiShare</strong> — Seamless file &amp; text sharing across your WiFi network.<br />
       &copy; <span id="yr"></span> WiShare. Developed with ❤️ for effortless local sharing.<br />
-      <span style="font-size:0.68rem;opacity:0.75">No internet required. No data leaves your network. Files auto-deleted after 7 days.</span>
+      <span style="font-size:.68rem;opacity:.75">No internet required. Files auto-deleted after 7 days.</span>
     </div>
   </div>
 </footer>
@@ -654,15 +488,19 @@
 <div id="toasts" aria-live="assertive" role="status"></div>
 
 <script>
-/* ══════════════════════════════════════════
-   WISHARE CLIENT — SSE-based real-time sync
-   Works on Vercel, Render, Railway, local
-══════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   WISHARE — Pure Polling Client
+   No WebSocket. No SSE. No reconnecting issues.
+   Works perfectly on Vercel free tier.
 
-/* ── Unique client ID (prevents echo) ── */
-const CLIENT_ID = crypto.randomUUID
-  ? crypto.randomUUID()
-  : Math.random().toString(36).slice(2) + Date.now().toString(36);
+   How it works:
+   1. On load: GET /api/state to get full current state
+   2. Every 2.5s: GET /api/poll?hash=<lastHash>
+      - Server returns { changed: false } if nothing changed (cheap)
+      - Server returns { changed: true, text, files } if state changed
+   3. On text change: POST /api/text (debounced 500ms)
+   4. On file upload: POST /api/upload (XHR for progress)
+══════════════════════════════════════════════ */
 
 /* ── THEME ── */
 const saved = localStorage.getItem('ws-theme') || 'dark';
@@ -686,80 +524,91 @@ function setTheme(isLight) {
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ── STATE ── */
-let isApplying = false;
-let syncTimer  = null;
+let lastHash   = '';       // last known state hash from server
+let isApplying = false;    // true while we're applying a server update (prevent echo)
+let syncTimer  = null;     // debounce timer for text POST
+let pollTimer  = null;     // interval timer for polling
 let dlOpen     = false;
 let netOpen    = false;
-let sseSource  = null;
-let reconnectDelay = 1500;
+const POLL_MS  = 2500;     // poll every 2.5 seconds
 
-/* ══════════════════════════════════════════
-   SERVER-SENT EVENTS
-   EventSource auto-reconnects on drop.
-   Works through HTTP proxies, Vercel edge,
-   Cloudflare, nginx — unlike WebSockets.
-══════════════════════════════════════════ */
-function connectSSE() {
-  // Close any existing connection
-  if (sseSource) { sseSource.close(); sseSource = null; }
-
-  setStatus('warn', 'Connecting…');
-
-  const es = new EventSource('/api/events');
-  sseSource = es;
-
-  es.onopen = () => {
-    setStatus('on', 'Live');
-    reconnectDelay = 1500; // reset backoff
-  };
-
-  es.onmessage = (event) => {
-    // SSE comment lines (heartbeat) have no data — ignore
-    if (!event.data) return;
-
-    let msg;
-    try { msg = JSON.parse(event.data); } catch { return; }
-
-    if (msg.type === 'init') {
-      isApplying = true;
-      applyText(msg.text || '');
-      renderFiles(msg.files || []);
-      isApplying = false;
-
-    } else if (msg.type === 'text') {
-      // Server echoes text changes to all OTHER clients
-      isApplying = true;
-      applyText(msg.text || '');
-      isApplying = false;
-
-    } else if (msg.type === 'files') {
-      renderFiles(msg.files || []);
-    }
-  };
-
-  es.onerror = () => {
-    setStatus('err', 'Reconnecting…');
-    es.close();
-    sseSource = null;
-    // Exponential backoff, max 15 s
-    setTimeout(connectSSE, reconnectDelay);
-    reconnectDelay = Math.min(reconnectDelay * 1.5, 15000);
-  };
-}
-
+/* ══════════════════════════════════════════════
+   STATUS INDICATOR
+══════════════════════════════════════════════ */
 function setStatus(state, label) {
   const dot = document.getElementById('live-dot');
   const lbl = document.getElementById('live-lbl');
-  dot.className = 'live-dot' + (state !== 'off' ? ' ' + state : '');
+  // state: 'on' = live green | 'err' = red | '' = grey
+  dot.className = 'live-dot' + (state ? ' ' + state : '');
   lbl.textContent = label;
 }
 
-/* ══════════════════════════════════════════
+/* ══════════════════════════════════════════════
+   LOAD INITIAL STATE — called once on page load
+══════════════════════════════════════════════ */
+function loadState() {
+  setStatus('', 'Connecting…');
+  fetch('/api/state')
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(data => {
+      lastHash = data.hash || '';
+      isApplying = true;
+      applyText(data.text || '');
+      renderFiles(data.files || []);
+      isApplying = false;
+      setStatus('on', 'Live');
+      startPolling();
+    })
+    .catch(() => {
+      setStatus('err', 'Retrying…');
+      setTimeout(loadState, 3000);
+    });
+}
+
+/* ══════════════════════════════════════════════
+   POLLING — runs every 2.5 seconds
+   Each request is tiny and completes instantly.
+   Vercel handles millions of these per day.
+══════════════════════════════════════════════ */
+function startPolling() {
+  clearInterval(pollTimer);
+  pollTimer = setInterval(doPoll, POLL_MS);
+}
+
+function doPoll() {
+  fetch('/api/poll?hash=' + encodeURIComponent(lastHash))
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(data => {
+      setStatus('on', 'Live');
+
+      if (!data.changed) return; // nothing changed — done
+
+      // State changed — apply updates
+      lastHash = data.hash;
+      isApplying = true;
+      applyText(data.text || '');
+      renderFiles(data.files || []);
+      isApplying = false;
+    })
+    .catch(() => {
+      // Network blip — show warning but keep polling, it will self-heal
+      setStatus('err', 'Retrying…');
+    });
+}
+
+/* ══════════════════════════════════════════════
    TEXT SYNC
-══════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function applyText(text) {
   const ta = document.getElementById('shared-text');
   if (ta.value === text) return;
+  // Preserve cursor position
   const start = ta.selectionStart;
   const end   = ta.selectionEnd;
   ta.value = text;
@@ -777,18 +626,26 @@ const ta = document.getElementById('shared-text');
 ta.addEventListener('input', () => {
   if (isApplying) return;
   updCt(ta.value);
+  // Show "Saving…" indicator
   document.getElementById('sync-tag').classList.add('on');
   clearTimeout(syncTimer);
-  syncTimer = setTimeout(pushText, 400);
+  // Debounce: wait 500ms after user stops typing before sending
+  syncTimer = setTimeout(pushText, 500);
 });
 
 function pushText() {
-  // POST text to server — server broadcasts to all other SSE clients
   fetch('/api/text', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ text: ta.value, clientId: CLIENT_ID }),
-  }).finally(() => {
+    body:    JSON.stringify({ text: ta.value }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    // Update our local hash so next poll knows the new state
+    if (data.hash) lastHash = data.hash;
+    document.getElementById('sync-tag').classList.remove('on');
+  })
+  .catch(() => {
     document.getElementById('sync-tag').classList.remove('on');
   });
 }
@@ -812,13 +669,13 @@ function clearText() {
   fetch('/api/text', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ text: '', clientId: CLIENT_ID }),
-  });
+    body:    JSON.stringify({ text: '' }),
+  }).then(r => r.json()).then(d => { if (d.hash) lastHash = d.hash; });
 }
 
-/* ══════════════════════════════════════════
+/* ══════════════════════════════════════════════
    FILE UPLOAD
-══════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 const upzone = document.getElementById('upzone');
 upzone.addEventListener('dragover',  e => { e.preventDefault(); upzone.classList.add('drag'); });
 upzone.addEventListener('dragleave', ()  => upzone.classList.remove('drag'));
@@ -841,7 +698,7 @@ async function doUpload(files) {
   pl.textContent = `Uploading ${files.length} file${files.length > 1 ? 's' : ''}…`;
 
   try {
-    await new Promise((res, rej) => {
+    const newHash = await new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/upload');
       xhr.upload.onprogress = e => {
@@ -852,12 +709,24 @@ async function doUpload(files) {
           pt?.setAttribute('aria-valuenow', p);
         }
       };
-      xhr.onload  = () => xhr.status === 200 ? res() : rej(new Error('Upload error ' + xhr.status));
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          try { res(JSON.parse(xhr.responseText).hash); } catch { res(''); }
+        } else {
+          rej(new Error('Upload error ' + xhr.status));
+        }
+      };
       xhr.onerror = () => rej(new Error('Network error'));
       xhr.send(fd);
     });
+
+    // Update hash so next poll sees the state correctly
+    if (newHash) lastHash = newHash;
     toast(`${files.length} file${files.length > 1 ? 's' : ''} uploaded!`, 'success');
     if (!dlOpen) toggleDL();
+    // Immediately poll to refresh file list for this user too
+    doPoll();
+
   } catch (e) {
     toast('Upload failed — ' + e.message, 'error');
   } finally {
@@ -869,9 +738,9 @@ async function doUpload(files) {
   }
 }
 
-/* ══════════════════════════════════════════
+/* ══════════════════════════════════════════════
    DOWNLOADS PANEL
-══════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function toggleDL() {
   dlOpen = !dlOpen;
   document.getElementById('dl-body').classList.toggle('open', dlOpen);
@@ -909,23 +778,36 @@ function renderFiles(files) {
 
 async function delFile(id) {
   const r = await fetch(`/api/file/${id}`, { method: 'DELETE' });
-  r.ok ? toast('File deleted', 'success') : toast('Error deleting file', 'error');
+  const d = await r.json();
+  if (r.ok) {
+    if (d.hash) lastHash = d.hash;
+    toast('File deleted', 'success');
+    doPoll();
+  } else {
+    toast('Error deleting file', 'error');
+  }
 }
 
 function clearAll(e) {
   e.stopPropagation();
   if (!confirm('Delete all shared files?')) return;
   fetch('/api/files', { method: 'DELETE' })
-    .then(r => r.ok ? toast('All files cleared', 'success') : toast('Error', 'error'));
+    .then(r => r.json())
+    .then(d => {
+      if (d.hash) lastHash = d.hash;
+      toast('All files cleared', 'success');
+      doPoll();
+    })
+    .catch(() => toast('Error', 'error'));
 }
 
-/* ══════════════════════════════════════════
+/* ══════════════════════════════════════════════
    NETWORK INFO
-══════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 async function toggleNet() {
   netOpen = !netOpen;
   document.getElementById('net-card').style.display = netOpen ? '' : 'none';
-  document.getElementById('net-btn')?.setAttribute('aria-expanded', netOpen);
+  document.getElementById('net-btn').setAttribute('aria-expanded', netOpen);
   if (!netOpen) return;
 
   try {
@@ -939,9 +821,10 @@ async function toggleNet() {
             <div class="ip-hint">Tap to copy</div>
           </div>`;
         }).join('')
-      : `<div style="padding:14px;color:var(--txt3);font-size:.82rem">No local network interfaces found.<br>You may be on a hosted/cloud environment.</div>`;
+      : `<div style="padding:14px;color:var(--txt3);font-size:.82rem">No local interfaces found. Share your Vercel domain URL directly.</div>`;
   } catch {
-    document.getElementById('net-grid').innerHTML = `<div style="padding:14px;color:var(--err);font-size:.82rem">Failed to load info.</div>`;
+    document.getElementById('net-grid').innerHTML =
+      `<div style="padding:14px;color:var(--err);font-size:.82rem">Failed to load info.</div>`;
   }
 }
 
@@ -957,9 +840,7 @@ async function copyStr(url, el) {
   toast('URL copied!', 'success');
 }
 
-/* ══════════════════════════════════════════
-   MISC
-══════════════════════════════════════════ */
+/* ── MISC ── */
 function doRefresh() {
   document.getElementById('refresh-btn').classList.add('spin');
   setTimeout(() => location.reload(), 220);
@@ -993,14 +874,15 @@ function sz(b) {
 }
 function ago(ts) {
   const d=Date.now()-ts, m=Math.floor(d/60000), h=Math.floor(d/3600000), dy=Math.floor(d/86400000);
-  if (m<1) return 'just now'; if (m<60) return m+'m ago'; if (h<24) return h+'h ago'; return dy+'d ago';
+  if (m<1) return 'just now'; if (m<60) return m+'m ago';
+  if (h<24) return h+'h ago'; return dy+'d ago';
 }
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 /* ── START ── */
-connectSSE();
+loadState();
 </script>
 </body>
 </html>
