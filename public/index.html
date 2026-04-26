@@ -20,15 +20,15 @@
   <meta property="og:site_name"    content="WiShare" />
   <meta property="og:title"        content="WiShare — Instant WiFi File & Text Sharing" />
   <meta property="og:description"  content="Share files and text across every device on your WiFi — instantly, with no internet or account required." />
-  <meta property="og:url"          content="https://wishare.vercel.app" />
-  <meta property="og:image"        content="https://wishare.vercel.app/og-image.png" />
+  <meta property="og:url"          content="https://wishare.onrender.com" />
+  <meta property="og:image"        content="https://wishare.onrender.com/og-image.png" />
   <meta property="og:locale"       content="en_US" />
 
   <!-- SEO — TWITTER -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="WiShare — Instant WiFi File & Text Sharing" />
   <meta name="twitter:description" content="Share files and text across every device on your WiFi — no internet, no account, no install." />
-  <meta name="twitter:image"       content="https://wishare.vercel.app/og-image.png" />
+  <meta name="twitter:image"       content="https://wishare.onrender.com/og-image.png" />
 
   <!-- SEO — STRUCTURED DATA -->
   <script type="application/ld+json">
@@ -36,14 +36,23 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "WiShare",
-    "description": "Share files and text instantly across all devices. No internet, no account, no app required.",
+    "description": "Share files and text instantly across all devices on the same network. No internet, no account, no app required.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Real-time text sync via WebSocket",
+      "Drag and drop file upload with progress",
+      "Collapsible downloads panel",
+      "Dark and light mode toggle",
+      "Auto file cleanup after 7 days",
+      "Online device counter",
+      "Works on any device with a browser"
+    ]
   }
   </script>
 
-  <link rel="canonical" href="https://wishare.vercel.app" />
+  <link rel="canonical" href="https://wishare.onrender.com" />
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,7 +60,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
 
   <style>
-    :root { --tr: 0.22s cubic-bezier(0.4,0,0.2,1); --radius-sm:8px; --radius:12px; --radius-lg:16px; }
+    :root { --tr:0.22s cubic-bezier(0.4,0,0.2,1); --r-sm:8px; --r:12px; --r-lg:16px; }
 
     [data-theme="dark"] {
       --bg:#0b0d12; --surface:#14161d; --surf2:#1a1d27; --surf3:#21263a;
@@ -59,7 +68,8 @@
       --acc:#5b8af5; --acc2:#8b5cf6;
       --accG:linear-gradient(135deg,#5b8af5,#8b5cf6);
       --accGlow:0 0 28px rgba(91,138,245,.22); --accDim:rgba(91,138,245,.08);
-      --ok:#34d399; --err:#f87171; --shadow:0 4px 32px rgba(0,0,0,.45);
+      --ok:#34d399; --err:#f87171; --warn:#fbbf24;
+      --shadow:0 4px 32px rgba(0,0,0,.45); --shadow-sm:0 2px 12px rgba(0,0,0,.3);
     }
     [data-theme="light"] {
       --bg:#eef2ff; --surface:#fff; --surf2:#f4f6ff; --surf3:#e8edff;
@@ -67,7 +77,8 @@
       --acc:#3d68e8; --acc2:#7c3aed;
       --accG:linear-gradient(135deg,#3d68e8,#7c3aed);
       --accGlow:0 0 28px rgba(61,104,232,.2); --accDim:rgba(61,104,232,.07);
-      --ok:#059669; --err:#dc2626; --shadow:0 4px 24px rgba(61,104,232,.1);
+      --ok:#059669; --err:#dc2626; --warn:#d97706;
+      --shadow:0 4px 24px rgba(61,104,232,.1); --shadow-sm:0 2px 10px rgba(61,104,232,.07);
     }
 
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -84,8 +95,8 @@
       position:sticky; top:0; z-index:200;
       background:var(--surface); border-bottom:1px solid var(--bd);
       height:62px; display:flex; align-items:center; justify-content:space-between;
-      padding-left:max(24px,env(safe-area-inset-left));
-      padding-right:max(24px,env(safe-area-inset-right));
+      padding-left:max(22px,env(safe-area-inset-left));
+      padding-right:max(22px,env(safe-area-inset-right));
       box-shadow:var(--shadow); transition:background var(--tr),border-color var(--tr);
     }
     .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
@@ -96,37 +107,46 @@
     }
     .logo-name{
       font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
-      background:var(--accG);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      background-clip:text;letter-spacing:-0.04em;
+      background:var(--accG);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.04em;
     }
     .logo-pill{
       font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
       background:var(--surf3);color:var(--txt3);border:1px solid var(--bd);
       border-radius:4px;padding:2px 6px;align-self:flex-end;margin-bottom:2px;
-      transition:background var(--tr),border-color var(--tr);
     }
     .hdr-right{display:flex;align-items:center;gap:8px;}
 
-    /* Live pill */
-    .live-pill{
-      display:flex;align-items:center;gap:6px;background:var(--surf2);
-      border:1px solid var(--bd);border-radius:20px;padding:5px 10px 5px 8px;
-      font-size:.72rem;font-weight:500;color:var(--txt2);white-space:nowrap;
-      transition:all var(--tr);
+    /* Connection pill — shows status + online count */
+    .conn-pill{
+      display:flex;align-items:center;gap:7px;
+      background:var(--surf2);border:1px solid var(--bd);border-radius:20px;
+      padding:5px 11px 5px 8px;font-size:.72rem;font-weight:500;color:var(--txt2);
+      white-space:nowrap;transition:all var(--tr);
     }
-    .live-dot{
+    .conn-dot{
       width:7px;height:7px;border-radius:50%;background:var(--txt3);
       flex-shrink:0;transition:background .4s,box-shadow .4s;
     }
-    .live-dot.on  {background:var(--ok); box-shadow:0 0 7px var(--ok); animation:dpOn  2.2s ease infinite;}
-    .live-dot.err {background:var(--err);box-shadow:0 0 7px var(--err);animation:dpErr 1.4s ease infinite;}
-    @keyframes dpOn  {0%,100%{box-shadow:0 0 5px var(--ok)} 50%{box-shadow:0 0 13px var(--ok)}}
-    @keyframes dpErr {0%,100%{box-shadow:0 0 5px var(--err)}50%{box-shadow:0 0 12px var(--err)}}
+    .conn-dot.live{background:var(--ok);box-shadow:0 0 7px var(--ok);animation:dpLive 2.2s ease infinite;}
+    .conn-dot.warn{background:var(--warn);box-shadow:0 0 7px var(--warn);}
+    .conn-dot.err {background:var(--err);box-shadow:0 0 7px var(--err);animation:dpErr 1.4s ease infinite;}
+    @keyframes dpLive{0%,100%{box-shadow:0 0 5px var(--ok)}  50%{box-shadow:0 0 13px var(--ok)}}
+    @keyframes dpErr {0%,100%{box-shadow:0 0 5px var(--err)} 50%{box-shadow:0 0 12px var(--err)}}
+
+    /* Online count badge inside the pill */
+    .online-badge{
+      display:inline-flex;align-items:center;gap:4px;
+      background:var(--accDim);border:1px solid var(--bd2);
+      border-radius:10px;padding:1px 7px;font-size:.66rem;font-weight:600;
+      color:var(--acc);margin-left:2px;opacity:0;transition:opacity .3s;
+    }
+    .online-badge.show{opacity:1;}
 
     /* Icon buttons */
     .ibtn{
       width:38px;height:38px;min-width:44px;min-height:44px;
-      border-radius:var(--radius-sm);background:var(--surf2);border:1px solid var(--bd);
+      border-radius:var(--r-sm);background:var(--surf2);border:1px solid var(--bd);
       color:var(--txt2);display:flex;align-items:center;justify-content:center;
       font-size:16px;transition:all var(--tr);flex-shrink:0;
     }
@@ -166,24 +186,21 @@
     .hero p{color:var(--txt2);font-size:clamp(.83rem,2vw,.93rem);max-width:440px;margin:0 auto;line-height:1.65;}
     .hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
     .chip{
-      display:inline-flex;align-items:center;gap:5px;background:var(--surf2);
-      border:1px solid var(--bd);border-radius:20px;padding:4px 12px;
-      font-size:.72rem;color:var(--txt2);font-weight:500;white-space:nowrap;transition:all var(--tr);
+      display:inline-flex;align-items:center;gap:5px;
+      background:var(--surf2);border:1px solid var(--bd);border-radius:20px;
+      padding:4px 12px;font-size:.72rem;color:var(--txt2);font-weight:500;white-space:nowrap;
+      transition:all var(--tr);
     }
     .chip:hover{border-color:var(--acc);color:var(--acc);}
 
     /* ── MAIN ── */
-    main{
-      flex:1;max-width:860px;width:100%;margin:0 auto;
-      padding:24px 18px 52px;display:flex;flex-direction:column;gap:18px;
-    }
+    main{flex:1;max-width:860px;width:100%;margin:0 auto;padding:24px 18px 52px;display:flex;flex-direction:column;gap:18px;}
 
     /* ── CARDS ── */
     .card{
-      background:var(--surface);border:1px solid var(--bd);
-      border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);
-      transition:background var(--tr),border-color var(--tr);
-      animation:cardUp .38s ease both;
+      background:var(--surface);border:1px solid var(--bd);border-radius:var(--r-lg);
+      overflow:hidden;box-shadow:var(--shadow);
+      transition:background var(--tr),border-color var(--tr);animation:cardUp .38s ease both;
     }
     .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.10s}
     .card:nth-child(3){animation-delay:.16s}.card:nth-child(4){animation-delay:.22s}
@@ -191,24 +208,19 @@
 
     .card-hdr{
       display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:8px;padding:14px 18px;
-      border-bottom:1px solid var(--bd);transition:border-color var(--tr);
+      flex-wrap:wrap;gap:8px;padding:14px 18px;border-bottom:1px solid var(--bd);
     }
-    .card-title{
-      display:flex;align-items:center;gap:9px;
-      font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--txt);
-    }
+    .card-title{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--txt);}
     .badge{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
     .b-blue  {background:rgba(91,138,245,.12);color:#5b8af5;}
     .b-purple{background:rgba(139,92,246,.12);color:#8b5cf6;}
-    .b-teal  {background:rgba(52,211,153,.12);color:#34d399;}
+    .b-teal  {background:rgba(52,211,153,.12); color:#34d399;}
     .card-acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
 
     /* ── BUTTONS ── */
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:5px;
-      padding:7px 14px;border-radius:var(--radius-sm);
-      font-size:.8rem;font-weight:500;cursor:pointer;
+      padding:7px 14px;border-radius:var(--r-sm);font-size:.8rem;font-weight:500;cursor:pointer;
       transition:all var(--tr);border:1px solid transparent;
       font-family:'DM Sans',sans-serif;white-space:nowrap;text-decoration:none;min-height:36px;
     }
@@ -229,9 +241,8 @@
     #shared-text::placeholder{color:var(--txt3);}
     #shared-text:focus{background:var(--surf3);}
     .text-foot{
-      display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:6px;padding:8px 18px;
-      border-top:1px solid var(--bd);background:var(--surface);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;
+      padding:8px 18px;border-top:1px solid var(--bd);background:var(--surface);
       transition:background var(--tr),border-color var(--tr);
     }
     .char-ct{font-size:.7rem;color:var(--txt3);font-variant-numeric:tabular-nums;}
@@ -242,17 +253,13 @@
 
     /* ── UPLOAD ZONE ── */
     .upzone{
-      margin:16px 18px;border:2px dashed var(--bd2);border-radius:var(--radius);
+      margin:16px 18px;border:2px dashed var(--bd2);border-radius:var(--r);
       padding:36px 20px;display:flex;flex-direction:column;align-items:center;
       gap:10px;cursor:pointer;position:relative;transition:all var(--tr);text-align:center;
     }
     .upzone:hover,.upzone.drag{border-color:var(--acc);background:var(--accDim);}
     .upzone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;touch-action:manipulation;}
-    .up-icon{
-      width:52px;height:52px;border-radius:13px;background:var(--accDim);
-      display:flex;align-items:center;justify-content:center;font-size:26px;
-      transition:transform var(--tr),background var(--tr);pointer-events:none;
-    }
+    .up-icon{width:52px;height:52px;border-radius:13px;background:var(--accDim);display:flex;align-items:center;justify-content:center;font-size:26px;transition:transform var(--tr),background var(--tr);pointer-events:none;}
     .upzone:hover .up-icon,.upzone.drag .up-icon{transform:translateY(-4px);background:rgba(91,138,245,.14);}
     .up-lbl{font-weight:600;font-size:.9rem;color:var(--txt);pointer-events:none;}
     .up-sub{font-size:.74rem;color:var(--txt3);pointer-events:none;}
@@ -263,10 +270,7 @@
     .prog-bar    {height:100%;background:var(--accG);border-radius:99px;transition:width .2s;width:0;}
 
     /* ── DOWNLOADS PANEL ── */
-    .dl-hdr{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 18px;cursor:pointer;user-select:none;transition:background var(--tr);min-height:52px;
-    }
+    .dl-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;transition:background var(--tr);min-height:52px;}
     .dl-hdr:hover{background:var(--surf2);}
     .dl-left {display:flex;align-items:center;gap:9px;}
     .dl-right{display:flex;align-items:center;gap:8px;}
@@ -285,8 +289,7 @@
       border-bottom:1px solid var(--bd);transition:background var(--tr);animation:fi .25s ease both;
     }
     @keyframes fi{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
-    .f-item:last-child{border-bottom:none;}
-    .f-item:hover{background:var(--surf2);}
+    .f-item:last-child{border-bottom:none;}.f-item:hover{background:var(--surf2);}
     .f-icon{width:40px;height:40px;border-radius:9px;background:var(--surf3);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
     .f-info{min-width:0;}
     .f-name{font-weight:500;font-size:.85rem;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -296,7 +299,7 @@
 
     /* ── NETWORK CARD ── */
     .net-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:16px 18px;}
-    .ip-chip {background:var(--surf2);border:1px solid var(--bd);border-radius:var(--radius);padding:14px 15px;cursor:pointer;transition:all var(--tr);}
+    .ip-chip{background:var(--surf2);border:1px solid var(--bd);border-radius:var(--r);padding:14px 15px;cursor:pointer;transition:all var(--tr);}
     .ip-chip:hover{border-color:var(--acc);box-shadow:var(--accGlow);}
     .ip-lbl {font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:5px;}
     .ip-url {font-family:'Menlo','Consolas',monospace;font-size:.78rem;color:var(--acc);font-weight:500;word-break:break-all;}
@@ -304,12 +307,7 @@
 
     /* ── TOAST ── */
     #toasts{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));right:16px;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);}
-    .toast{
-      display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--bd2);
-      border-radius:var(--radius);padding:11px 16px;font-size:.81rem;font-weight:500;color:var(--txt);
-      box-shadow:0 8px 32px rgba(0,0,0,.22);animation:tIn .28s cubic-bezier(.34,1.56,.64,1);
-      pointer-events:all;max-width:300px;transition:opacity .3s;
-    }
+    .toast{display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--bd2);border-radius:var(--r);padding:11px 16px;font-size:.81rem;font-weight:500;color:var(--txt);box-shadow:0 8px 32px rgba(0,0,0,.22);animation:tIn .28s cubic-bezier(.34,1.56,.64,1);pointer-events:all;max-width:300px;transition:opacity .3s;}
     .toast.success{border-color:rgba(52,211,153,.35);}
     .toast.error  {border-color:rgba(248,113,113,.35);color:var(--err);}
     @keyframes tIn{from{opacity:0;transform:translateX(16px) scale(.94)}to{opacity:1;transform:none}}
@@ -325,9 +323,9 @@
     @media(min-width:1200px){main{padding:30px 24px 60px;}.hero{padding:36px 24px 30px;}.card-hdr{padding:16px 24px;}#shared-text{padding:20px 24px;min-height:200px;}.upzone{padding:44px 24px;margin:18px 24px;}.f-item{padding:14px 24px;}}
     @media(min-width:768px) and (max-width:1023px){header{height:58px;}main{padding:20px 16px 44px;gap:16px;}.hero{padding:22px 20px 18px;}.upzone{padding:30px 18px;margin:14px 16px;}}
     @media(min-width:600px) and (max-width:767px){header{padding:0 16px;height:56px;}.logo-pill{display:none;}main{padding:16px 14px 40px;gap:14px;}.hero{padding:20px 18px 16px;}.hero h1{font-size:1.6rem;}.card-hdr{padding:12px 16px;}#shared-text{padding:14px 16px;min-height:150px;}.upzone{padding:28px 16px;margin:12px 14px;}.f-item{padding:11px 16px;}.net-grid{grid-template-columns:1fr 1fr;padding:14px 16px;}}
-    @media(min-width:480px) and (max-width:599px){header{padding:0 14px;height:54px;}.logo-name{font-size:1.1rem;}.logo-pill{display:none;}.live-pill span{display:none;}main{padding:14px 12px 36px;gap:13px;}.hero{padding:18px 16px 14px;}.hero h1{font-size:1.45rem;}.card-hdr{padding:11px 14px;}#shared-text{padding:13px 14px;min-height:140px;}.text-foot{padding:7px 14px;}.upzone{padding:24px 14px;margin:12px;}.up-icon{width:44px;height:44px;font-size:22px;}.f-item{padding:10px 14px;gap:10px;grid-template-columns:36px 1fr auto;}.f-icon{width:36px;height:36px;font-size:17px;}.net-grid{grid-template-columns:1fr;padding:13px 14px;}}
+    @media(min-width:480px) and (max-width:599px){header{padding:0 14px;height:54px;}.logo-name{font-size:1.1rem;}.logo-pill{display:none;}.conn-pill span:not(.online-badge){display:none;}main{padding:14px 12px 36px;gap:13px;}.hero{padding:18px 16px 14px;}.hero h1{font-size:1.45rem;}.card-hdr{padding:11px 14px;}#shared-text{padding:13px 14px;min-height:140px;}.text-foot{padding:7px 14px;}.upzone{padding:24px 14px;margin:12px;}.up-icon{width:44px;height:44px;font-size:22px;}.f-item{padding:10px 14px;gap:10px;grid-template-columns:36px 1fr auto;}.f-icon{width:36px;height:36px;font-size:17px;}.net-grid{grid-template-columns:1fr;padding:13px 14px;}}
     @media(max-width:479px){
-      header{padding:0 12px;height:52px;}.logo-mark{width:32px;height:32px;font-size:16px;border-radius:8px;}.logo-name{font-size:1.05rem;}.logo-pill{display:none;}.live-pill{padding:4px 8px 4px 7px;gap:5px;}.live-pill span{display:none;}.ibtn{min-width:38px;width:38px;height:38px;min-height:38px;}.hdr-right{gap:5px;}
+      header{padding:0 12px;height:52px;}.logo-mark{width:32px;height:32px;font-size:16px;border-radius:8px;}.logo-name{font-size:1.05rem;}.logo-pill{display:none;}.conn-pill{padding:4px 8px 4px 7px;gap:5px;}.conn-pill span:not(.online-badge){display:none;}.ibtn{min-width:38px;width:38px;height:38px;min-height:38px;}.hdr-right{gap:5px;}
       main{padding:12px 10px 32px;gap:12px;}.hero{padding:18px 14px 14px;}.hero h1{font-size:1.3rem;letter-spacing:-0.03em;}.hero p{font-size:.82rem;}.hero-chips{gap:5px;margin-top:10px;}.chip{font-size:.66rem;padding:3px 9px;}
       .card-hdr{padding:11px 13px;}.card-title{font-size:.86rem;}.badge{width:26px;height:26px;font-size:12px;}#shared-text{padding:12px 13px;min-height:130px;font-size:16px;}.text-foot{padding:7px 13px;flex-direction:column;align-items:flex-start;gap:3px;}
       .upzone{margin:11px;padding:22px 12px;gap:8px;}.up-icon{width:42px;height:42px;font-size:20px;border-radius:10px;}.up-lbl{font-size:.84rem;}.up-sub{font-size:.68rem;}.prog-wrap{padding:0 13px 12px;}
@@ -352,9 +350,12 @@
     <span class="logo-pill" aria-hidden="true">Beta</span>
   </a>
   <div class="hdr-right" role="toolbar" aria-label="Page controls">
-    <div class="live-pill" aria-live="polite">
-      <div class="live-dot" id="live-dot" aria-hidden="true"></div>
-      <span id="live-lbl">Connecting…</span>
+    <div class="conn-pill" aria-live="polite" id="conn-pill">
+      <div class="conn-dot" id="conn-dot" aria-hidden="true"></div>
+      <span id="conn-lbl">Connecting…</span>
+      <span class="online-badge" id="online-badge" aria-label="devices online">
+        👥 <span id="online-cnt">1</span>
+      </span>
     </div>
     <button class="ibtn" id="refresh-btn" onclick="doRefresh()" aria-label="Refresh page" title="Refresh">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -383,7 +384,7 @@
   <h1>Share files &amp; text across your <em>WiFi</em></h1>
   <p>Instant sync on every device on the same network — no internet, no account, no app install needed.</p>
   <div class="hero-chips" aria-label="Key features">
-    <span class="chip">⚡ Syncs every 2.5s</span>
+    <span class="chip">⚡ Real-time WebSocket</span>
     <span class="chip">📡 WiFi &amp; online</span>
     <span class="chip">🔒 No login needed</span>
     <span class="chip">📱 Any device</span>
@@ -394,27 +395,25 @@
 <!-- MAIN -->
 <main aria-label="WiShare application">
 
-  <!-- Shared Text -->
   <article class="card" aria-label="Shared text">
     <div class="card-hdr">
       <div class="card-title"><div class="badge b-blue" aria-hidden="true">✏️</div><h2 style="font:inherit">Shared Text</h2></div>
       <div class="card-acts">
-        <span class="sync-tag" id="sync-tag" aria-live="polite"><span class="sync-dot" aria-hidden="true"></span>Saving…</span>
+        <span class="sync-tag" id="sync-tag" aria-live="polite"><span class="sync-dot" aria-hidden="true"></span>Syncing</span>
         <button class="btn btn-ghost btn-sm" onclick="copyText()" aria-label="Copy text">Copy</button>
         <button class="btn btn-ghost btn-sm" onclick="clearText()" aria-label="Clear text">Clear</button>
       </div>
     </div>
     <textarea id="shared-text"
-      placeholder="Start typing… syncs to every device viewing this page within 2–3 seconds. Perfect for links, passwords, notes, and code snippets."
+      placeholder="Start typing… syncs instantly to every device viewing this page. Perfect for links, passwords, notes, and code snippets."
       aria-label="Shared text — syncs to all connected devices"
       spellcheck="true" autocomplete="off"></textarea>
     <div class="text-foot">
       <span class="char-ct" id="char-ct" aria-live="polite">0 characters</span>
-      <span style="font-size:.68rem;color:var(--txt3)">🔄 Polls every 2.5s</span>
+      <span style="font-size:.68rem;color:var(--txt3)">⚡ WebSocket — instant sync</span>
     </div>
   </article>
 
-  <!-- Upload -->
   <article class="card" aria-label="File upload">
     <div class="card-hdr">
       <div class="card-title"><div class="badge b-purple" aria-hidden="true">📤</div><h2 style="font:inherit">Upload Files</h2></div>
@@ -426,7 +425,7 @@
       <input type="file" id="file-input" multiple onchange="handleFiles(this.files)" aria-label="Choose files" />
       <div class="up-icon" aria-hidden="true">☁️</div>
       <div class="up-lbl">Drop files here, or <span style="color:var(--acc)">click to browse</span></div>
-      <div class="up-sub">Any file type · Shared with all devices viewing this page</div>
+      <div class="up-sub">Any file type · Shared with all devices on this network</div>
     </div>
     <div class="prog-wrap" id="prog-wrap" aria-live="polite">
       <div class="prog-info"><span id="prog-lbl">Uploading…</span><span id="prog-pct">0%</span></div>
@@ -436,7 +435,6 @@
     </div>
   </article>
 
-  <!-- Downloads -->
   <article class="card" aria-label="Shared files">
     <div class="dl-hdr" id="dl-toggle" onclick="toggleDL()" role="button" tabindex="0"
       aria-expanded="false" aria-controls="dl-body"
@@ -458,7 +456,6 @@
     </div>
   </article>
 
-  <!-- Network Info -->
   <article class="card" id="net-card" style="display:none" aria-label="Network info">
     <div class="card-hdr">
       <div class="card-title"><div class="badge b-blue" aria-hidden="true">📡</div><h2 style="font:inherit">Network Access</h2></div>
@@ -466,13 +463,12 @@
     </div>
     <div class="net-grid" id="net-grid"><div style="padding:14px;color:var(--txt3);font-size:.82rem">Loading…</div></div>
     <p style="padding:0 18px 14px;font-size:.74rem;color:var(--txt3);line-height:1.65">
-      💡 Open any URL above on a device connected to the same WiFi. Click a chip to copy.
+      💡 Open any URL above on a device connected to the same network. Click a chip to copy.
     </p>
   </article>
 
 </main>
 
-<!-- FOOTER -->
 <footer role="contentinfo">
   <div class="foot-in">
     <div class="foot-logo" aria-hidden="true">WiShare</div>
@@ -480,7 +476,7 @@
     <div class="foot-copy">
       <strong>WiShare</strong> — Seamless file &amp; text sharing across your WiFi network.<br />
       &copy; <span id="yr"></span> WiShare. Developed with ❤️ for effortless local sharing.<br />
-      <span style="font-size:.68rem;opacity:.75">No internet required. Files auto-deleted after 7 days.</span>
+      <span style="font-size:.68rem;opacity:.75">No data leaves your network. Files auto-deleted after 7 days.</span>
     </div>
   </div>
 </footer>
@@ -488,20 +484,6 @@
 <div id="toasts" aria-live="assertive" role="status"></div>
 
 <script>
-/* ══════════════════════════════════════════════
-   WISHARE — Pure Polling Client
-   No WebSocket. No SSE. No reconnecting issues.
-   Works perfectly on Vercel free tier.
-
-   How it works:
-   1. On load: GET /api/state to get full current state
-   2. Every 2.5s: GET /api/poll?hash=<lastHash>
-      - Server returns { changed: false } if nothing changed (cheap)
-      - Server returns { changed: true, text, files } if state changed
-   3. On text change: POST /api/text (debounced 500ms)
-   4. On file upload: POST /api/upload (XHR for progress)
-══════════════════════════════════════════════ */
-
 /* ── THEME ── */
 const saved = localStorage.getItem('ws-theme') || 'dark';
 document.documentElement.setAttribute('data-theme', saved);
@@ -523,159 +505,134 @@ function setTheme(isLight) {
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ── STATE ── */
-let lastHash   = '';       // last known state hash from server
-let isApplying = false;    // true while we're applying a server update (prevent echo)
-let syncTimer  = null;     // debounce timer for text POST
-let pollTimer  = null;     // interval timer for polling
-let dlOpen     = false;
-let netOpen    = false;
-const POLL_MS  = 2500;     // poll every 2.5 seconds
+let ws = null, isRemote = false, syncTimer = null;
+let reconnectDelay = 1500, reconnectTimer = null;
+let dlOpen = false, netOpen = false;
 
-/* ══════════════════════════════════════════════
-   STATUS INDICATOR
-══════════════════════════════════════════════ */
 function setStatus(state, label) {
-  const dot = document.getElementById('live-dot');
-  const lbl = document.getElementById('live-lbl');
-  // state: 'on' = live green | 'err' = red | '' = grey
-  dot.className = 'live-dot' + (state ? ' ' + state : '');
+  const dot = document.getElementById('conn-dot');
+  const lbl = document.getElementById('conn-lbl');
+  dot.className = 'conn-dot' + (state ? ' ' + state : '');
   lbl.textContent = label;
 }
 
-/* ══════════════════════════════════════════════
-   LOAD INITIAL STATE — called once on page load
-══════════════════════════════════════════════ */
-function loadState() {
-  setStatus('', 'Connecting…');
-  fetch('/api/state')
-    .then(r => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(data => {
-      lastHash = data.hash || '';
-      isApplying = true;
-      applyText(data.text || '');
-      renderFiles(data.files || []);
-      isApplying = false;
-      setStatus('on', 'Live');
-      startPolling();
-    })
-    .catch(() => {
-      setStatus('err', 'Retrying…');
-      setTimeout(loadState, 3000);
-    });
+function setOnlineCount(n) {
+  const badge = document.getElementById('online-badge');
+  const cnt   = document.getElementById('online-cnt');
+  cnt.textContent = n;
+  badge.classList.toggle('show', n > 1);
+  badge.setAttribute('aria-label', `${n} device${n !== 1 ? 's' : ''} online`);
 }
 
-/* ══════════════════════════════════════════════
-   POLLING — runs every 2.5 seconds
-   Each request is tiny and completes instantly.
-   Vercel handles millions of these per day.
-══════════════════════════════════════════════ */
-function startPolling() {
-  clearInterval(pollTimer);
-  pollTimer = setInterval(doPoll, POLL_MS);
+function connect() {
+  if (ws) { try { ws.close(); } catch (_) {} ws = null; }
+  setStatus('warn', 'Connecting…');
+
+  const host = location.host;
+  if (!host) {
+    setStatus('err', 'Open via http://');
+    console.error('[WiShare] Page must be served over HTTP, not opened as a local file.');
+    return;
+  }
+
+  const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsUrl = proto + '//' + host;
+
+  let wsLocal;
+  try {
+    wsLocal = new WebSocket(wsUrl);
+  } catch (err) {
+    console.error('[WiShare] WebSocket failed:', err.message, '| URL:', wsUrl);
+    setStatus('err', 'Connection failed');
+    reconnectTimer = setTimeout(() => {
+      reconnectDelay = Math.min(reconnectDelay * 1.5, 15000);
+      connect();
+    }, reconnectDelay);
+    return;
+  }
+  ws = wsLocal;
+
+  ws.onopen = () => {
+    setStatus('live', 'Live');
+    reconnectDelay = 1500;
+    clearTimeout(reconnectTimer);
+  };
+
+  ws.onmessage = ({ data }) => {
+    let msg;
+    try { msg = JSON.parse(data); } catch { return; }
+    switch (msg.type) {
+      case 'init':
+        isRemote = true;
+        applyText(msg.text || '');
+        renderFiles(msg.files || []);
+        isRemote = false;
+        break;
+      case 'text':
+        isRemote = true;
+        applyText(msg.text || '');
+        isRemote = false;
+        break;
+      case 'files':
+        renderFiles(msg.files || []);
+        break;
+      case 'clients':
+        setOnlineCount(msg.count || 1);
+        break;
+    }
+  };
+
+  ws.onclose = () => {
+    setStatus('err', 'Reconnecting…');
+    setOnlineCount(0);
+    clearTimeout(reconnectTimer);
+    reconnectTimer = setTimeout(() => {
+      reconnectDelay = Math.min(reconnectDelay * 1.5, 15000);
+      connect();
+    }, reconnectDelay);
+  };
+
+  ws.onerror = () => {};
 }
 
-function doPoll() {
-  fetch('/api/poll?hash=' + encodeURIComponent(lastHash))
-    .then(r => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(data => {
-      setStatus('on', 'Live');
-
-      if (!data.changed) return; // nothing changed — done
-
-      // State changed — apply updates
-      lastHash = data.hash;
-      isApplying = true;
-      applyText(data.text || '');
-      renderFiles(data.files || []);
-      isApplying = false;
-    })
-    .catch(() => {
-      // Network blip — show warning but keep polling, it will self-heal
-      setStatus('err', 'Retrying…');
-    });
-}
-
-/* ══════════════════════════════════════════════
-   TEXT SYNC
-══════════════════════════════════════════════ */
 function applyText(text) {
   const ta = document.getElementById('shared-text');
   if (ta.value === text) return;
-  // Preserve cursor position
-  const start = ta.selectionStart;
-  const end   = ta.selectionEnd;
+  const s = ta.selectionStart, e = ta.selectionEnd;
   ta.value = text;
   updCt(text);
-  try { ta.setSelectionRange(start, end); } catch (_) {}
+  try { ta.setSelectionRange(s, e); } catch (_) {}
 }
 
 function updCt(t) {
   const n = (t || '').length;
-  document.getElementById('char-ct').textContent =
-    `${n.toLocaleString()} character${n !== 1 ? 's' : ''}`;
+  document.getElementById('char-ct').textContent = `${n.toLocaleString()} character${n !== 1 ? 's' : ''}`;
 }
 
 const ta = document.getElementById('shared-text');
 ta.addEventListener('input', () => {
-  if (isApplying) return;
+  if (isRemote) return;
   updCt(ta.value);
-  // Show "Saving…" indicator
   document.getElementById('sync-tag').classList.add('on');
   clearTimeout(syncTimer);
-  // Debounce: wait 500ms after user stops typing before sending
-  syncTimer = setTimeout(pushText, 500);
+  syncTimer = setTimeout(() => {
+    if (ws?.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: 'text', text: ta.value }));
+    document.getElementById('sync-tag').classList.remove('on');
+  }, 500);
 });
-
-function pushText() {
-  fetch('/api/text', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ text: ta.value }),
-  })
-  .then(r => r.json())
-  .then(data => {
-    // Update our local hash so next poll knows the new state
-    if (data.hash) lastHash = data.hash;
-    document.getElementById('sync-tag').classList.remove('on');
-  })
-  .catch(() => {
-    document.getElementById('sync-tag').classList.remove('on');
-  });
-}
 
 async function copyText() {
   if (!ta.value) return toast('Nothing to copy', 'error');
-  try {
-    await navigator.clipboard.writeText(ta.value);
-    toast('Copied to clipboard!', 'success');
-  } catch {
-    ta.select();
-    document.execCommand('copy');
-    toast('Copied!', 'success');
-  }
+  try { await navigator.clipboard.writeText(ta.value); toast('Copied to clipboard!', 'success'); }
+  catch { ta.select(); document.execCommand('copy'); toast('Copied!', 'success'); }
 }
 
 function clearText() {
   if (!ta.value) return;
-  ta.value = '';
-  updCt('');
-  fetch('/api/text', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ text: '' }),
-  }).then(r => r.json()).then(d => { if (d.hash) lastHash = d.hash; });
+  ta.value = ''; updCt('');
+  if (ws?.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: 'text', text: '' }));
 }
 
-/* ══════════════════════════════════════════════
-   FILE UPLOAD
-══════════════════════════════════════════════ */
 const upzone = document.getElementById('upzone');
 upzone.addEventListener('dragover',  e => { e.preventDefault(); upzone.classList.add('drag'); });
 upzone.addEventListener('dragleave', ()  => upzone.classList.remove('drag'));
@@ -686,61 +643,30 @@ function handleFiles(files) { if (files?.length) doUpload(Array.from(files)); }
 async function doUpload(files) {
   const fd = new FormData();
   files.forEach(f => fd.append('files', f));
-
-  const pw = document.getElementById('prog-wrap');
-  const pb = document.getElementById('prog-bar');
-  const pt = document.getElementById('prog-track');
-  const pl = document.getElementById('prog-lbl');
-  const pp = document.getElementById('prog-pct');
-
-  pw.classList.add('on');
-  pb.style.width = '0';
+  const pw = document.getElementById('prog-wrap'), pb = document.getElementById('prog-bar');
+  const pt = document.getElementById('prog-track'), pl = document.getElementById('prog-lbl'), pp = document.getElementById('prog-pct');
+  pw.classList.add('on'); pb.style.width = '0';
   pl.textContent = `Uploading ${files.length} file${files.length > 1 ? 's' : ''}…`;
-
   try {
-    const newHash = await new Promise((res, rej) => {
+    await new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/upload');
       xhr.upload.onprogress = e => {
-        if (e.lengthComputable) {
-          const p = Math.round(e.loaded / e.total * 100);
-          pb.style.width = p + '%';
-          pp.textContent = p + '%';
-          pt?.setAttribute('aria-valuenow', p);
-        }
+        if (e.lengthComputable) { const p = Math.round(e.loaded / e.total * 100); pb.style.width = p + '%'; pp.textContent = p + '%'; pt?.setAttribute('aria-valuenow', p); }
       };
       xhr.onload = () => {
-        if (xhr.status === 200) {
-          try { res(JSON.parse(xhr.responseText).hash); } catch { res(''); }
-        } else {
-          rej(new Error('Upload error ' + xhr.status));
-        }
+        if (xhr.status === 200) { res(); }
+        else { try { rej(new Error(JSON.parse(xhr.responseText).error)); } catch { rej(new Error(`Error ${xhr.status}`)); } }
       };
       xhr.onerror = () => rej(new Error('Network error'));
       xhr.send(fd);
     });
-
-    // Update hash so next poll sees the state correctly
-    if (newHash) lastHash = newHash;
     toast(`${files.length} file${files.length > 1 ? 's' : ''} uploaded!`, 'success');
     if (!dlOpen) toggleDL();
-    // Immediately poll to refresh file list for this user too
-    doPoll();
-
-  } catch (e) {
-    toast('Upload failed — ' + e.message, 'error');
-  } finally {
-    setTimeout(() => {
-      pw.classList.remove('on');
-      pb.style.width = '0';
-      document.getElementById('file-input').value = '';
-    }, 700);
-  }
+  } catch (e) { toast(e.message, 'error'); }
+  finally { setTimeout(() => { pw.classList.remove('on'); pb.style.width = '0'; document.getElementById('file-input').value = ''; }, 700); }
 }
 
-/* ══════════════════════════════════════════════
-   DOWNLOADS PANEL
-══════════════════════════════════════════════ */
 function toggleDL() {
   dlOpen = !dlOpen;
   document.getElementById('dl-body').classList.toggle('open', dlOpen);
@@ -753,21 +679,14 @@ function renderFiles(files) {
   const cnt = files.length;
   document.getElementById('f-cnt').textContent = cnt;
   document.getElementById('clr-all-btn').style.display = cnt ? '' : 'none';
-
   const list = document.getElementById('f-list');
-  if (!cnt) {
-    list.innerHTML = '<div class="f-empty"><span aria-hidden="true">📭</span>No files yet — upload something above!</div>';
-    return;
-  }
+  if (!cnt) { list.innerHTML = '<div class="f-empty"><span aria-hidden="true">📭</span>No files yet — upload something above!</div>'; return; }
   list.innerHTML = files.map((f, i) => `
     <div class="f-item" style="animation-delay:${i * 0.04}s">
       <div class="f-icon" aria-hidden="true">${emoji(f.originalName, f.mimetype)}</div>
       <div class="f-info">
         <div class="f-name" title="${esc(f.originalName)}">${esc(f.originalName)}</div>
-        <div class="f-meta">
-          <span>📦 ${sz(f.size)}</span>
-          <span>🕐 ${ago(f.uploadedAt)}</span>
-        </div>
+        <div class="f-meta"><span>📦 ${sz(f.size)}</span><span>🕐 ${ago(f.uploadedAt)}</span></div>
       </div>
       <div class="f-acts">
         <a href="/api/download/${f.storedName}" class="btn btn-ghost btn-sm" download aria-label="Download ${esc(f.originalName)}">↓ Download</a>
@@ -778,73 +697,38 @@ function renderFiles(files) {
 
 async function delFile(id) {
   const r = await fetch(`/api/file/${id}`, { method: 'DELETE' });
-  const d = await r.json();
-  if (r.ok) {
-    if (d.hash) lastHash = d.hash;
-    toast('File deleted', 'success');
-    doPoll();
-  } else {
-    toast('Error deleting file', 'error');
-  }
+  r.ok ? toast('File deleted', 'success') : toast('Error deleting file', 'error');
 }
 
 function clearAll(e) {
   e.stopPropagation();
   if (!confirm('Delete all shared files?')) return;
-  fetch('/api/files', { method: 'DELETE' })
-    .then(r => r.json())
-    .then(d => {
-      if (d.hash) lastHash = d.hash;
-      toast('All files cleared', 'success');
-      doPoll();
-    })
-    .catch(() => toast('Error', 'error'));
+  fetch('/api/files', { method: 'DELETE' }).then(r => r.ok ? toast('All files cleared', 'success') : toast('Error', 'error'));
 }
 
-/* ══════════════════════════════════════════════
-   NETWORK INFO
-══════════════════════════════════════════════ */
 async function toggleNet() {
   netOpen = !netOpen;
   document.getElementById('net-card').style.display = netOpen ? '' : 'none';
   document.getElementById('net-btn').setAttribute('aria-expanded', netOpen);
   if (!netOpen) return;
-
   try {
     const { ips, port } = await fetch('/api/info').then(r => r.json());
     document.getElementById('net-grid').innerHTML = ips.length
-      ? ips.map(ip => {
-          const u = `http://${ip.address}:${port}`;
-          return `<div class="ip-chip" onclick="copyStr('${u}',this)" role="button" tabindex="0" aria-label="Copy ${u}" onkeydown="if(event.key==='Enter')copyStr('${u}',this)">
-            <div class="ip-lbl">${ip.name}</div>
-            <div class="ip-url">${u}</div>
-            <div class="ip-hint">Tap to copy</div>
-          </div>`;
-        }).join('')
-      : `<div style="padding:14px;color:var(--txt3);font-size:.82rem">No local interfaces found. Share your Vercel domain URL directly.</div>`;
-  } catch {
-    document.getElementById('net-grid').innerHTML =
-      `<div style="padding:14px;color:var(--err);font-size:.82rem">Failed to load info.</div>`;
-  }
+      ? ips.map(ip => { const u = `http://${ip.address}:${port}`; return `<div class="ip-chip" onclick="copyStr('${u}',this)" role="button" tabindex="0" aria-label="Copy ${u}" onkeydown="if(event.key==='Enter')copyStr('${u}',this)"><div class="ip-lbl">${ip.name}</div><div class="ip-url">${u}</div><div class="ip-hint">Tap to copy</div></div>`; }).join('')
+      : `<div style="padding:14px;color:var(--txt3);font-size:.82rem">Share your Render URL directly.</div>`;
+  } catch { document.getElementById('net-grid').innerHTML = `<div style="padding:14px;color:var(--err);font-size:.82rem">Failed to load info.</div>`; }
 }
 
 async function copyStr(url, el) {
   try { await navigator.clipboard.writeText(url); }
-  catch {
-    const i = document.createElement('input');
-    i.value = url; document.body.appendChild(i); i.select();
-    document.execCommand('copy'); document.body.removeChild(i);
-  }
-  el.querySelector('.ip-hint').textContent = '✓ Copied!';
-  setTimeout(() => el.querySelector('.ip-hint').textContent = 'Tap to copy', 1800);
+  catch { const i = document.createElement('input'); i.value = url; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); }
+  const hint = el.querySelector('.ip-hint');
+  hint.textContent = '✓ Copied!';
+  setTimeout(() => hint.textContent = 'Tap to copy', 1800);
   toast('URL copied!', 'success');
 }
 
-/* ── MISC ── */
-function doRefresh() {
-  document.getElementById('refresh-btn').classList.add('spin');
-  setTimeout(() => location.reload(), 220);
-}
+function doRefresh() { document.getElementById('refresh-btn').classList.add('spin'); setTimeout(() => location.reload(), 220); }
 
 function toast(msg, type = 'info') {
   const icons = { success: '✓', error: '✕', info: 'ℹ' };
@@ -857,32 +741,15 @@ function toast(msg, type = 'info') {
 
 function emoji(name, mime = '') {
   const ext = (name || '').split('.').pop().toLowerCase();
-  const m   = mime.split('/')[0];
-  if (m === 'image') return '🖼️';
-  if (m === 'video') return '🎬';
-  if (m === 'audio') return '🎵';
-  return { pdf:'📄',zip:'📦',rar:'📦',gz:'📦','7z':'📦',tar:'📦',
-           doc:'📝',docx:'📝',xls:'📊',xlsx:'📊',ppt:'📊',pptx:'📊',
-           txt:'📃',md:'📃',js:'💾',ts:'💾',py:'💾',html:'💾',
-           css:'💾',json:'💾',xml:'💾',sh:'💾' }[ext] || '📁';
+  const m = mime.split('/')[0];
+  if (m === 'image') return '🖼️'; if (m === 'video') return '🎬'; if (m === 'audio') return '🎵';
+  return { pdf:'📄',zip:'📦',rar:'📦',gz:'📦','7z':'📦',tar:'📦',doc:'📝',docx:'📝',xls:'📊',xlsx:'📊',ppt:'📊',pptx:'📊',txt:'📃',md:'📃',js:'💾',ts:'💾',py:'💾',html:'💾',css:'💾',json:'💾',xml:'💾',sh:'💾',rb:'💾',go:'💾',rs:'💾' }[ext] || '📁';
 }
-function sz(b) {
-  if (b < 1024)       return b + ' B';
-  if (b < 1048576)    return (b/1024).toFixed(1) + ' KB';
-  if (b < 1073741824) return (b/1048576).toFixed(1) + ' MB';
-  return (b/1073741824).toFixed(2) + ' GB';
-}
-function ago(ts) {
-  const d=Date.now()-ts, m=Math.floor(d/60000), h=Math.floor(d/3600000), dy=Math.floor(d/86400000);
-  if (m<1) return 'just now'; if (m<60) return m+'m ago';
-  if (h<24) return h+'h ago'; return dy+'d ago';
-}
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function sz(b) { if(b<1024)return b+' B'; if(b<1048576)return(b/1024).toFixed(1)+' KB'; if(b<1073741824)return(b/1048576).toFixed(1)+' MB'; return(b/1073741824).toFixed(2)+' GB'; }
+function ago(ts) { const d=Date.now()-ts,m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000); if(m<1)return 'just now'; if(m<60)return m+'m ago'; if(h<24)return h+'h ago'; return dy+'d ago'; }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-/* ── START ── */
-loadState();
+connect();
 </script>
 </body>
 </html>
